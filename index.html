@@ -1,0 +1,535 @@
+# Código Completo: JH - Agenda Personal
+
+Copia todo el bloque de código a continuación y pégalo en tu archivo `index.html` en GitHub:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JH - Agenda Personal</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Litúrgicas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            liturgia: {
+              crema: '#FAF7F2',
+              pergamino: '#F3EDE2',
+              dorado: '#C5A059',
+              doradoOscuro: '#9E7A32',
+              pizarra: '#1C1F26',
+              carbon: '#121418',
+              tinta: '#2C2A29'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #FAF7F2; color: #2C2A29; }
+    .gold-border { border-color: #C5A059; }
+    .tab-active { border-bottom: 2px solid #C5A059; color: #9E7A32; font-weight: 600; }
+  </style>
+</head>
+<body class="min-h-screen font-sans flex flex-col justify-between antialiased selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- CABECERA -->
+  <header class="bg-liturgia-carbon text-liturgia-crema py-5 px-4 shadow-md border-b-2 border-liturgia-dorado">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+      <div>
+        <span class="text-xs uppercase tracking-widest text-liturgia-dorado font-cinzel">Catedral Metropolitana de San Pedro Apóstol · Cali</span>
+        <h1 class="text-2xl sm:text-3xl font-cinzel tracking-wide font-bold mt-1 text-white">JH - Agenda Personal</h1>
+        <p class="text-xs text-stone-400 italic font-serif">Con sincera gratitud y aprecio fraternal al Pbro. Jaime Humberto Ramos Escobar</p>
+      </div>
+      <!-- Reloj y Calendario en Vivo -->
+      <div class="bg-liturgia-pizarra border border-stone-700 rounded-lg p-3 text-center sm:text-right min-w-[190px]">
+        <div id="live-time" class="text-xl font-mono text-liturgia-dorado font-bold">--:--:--</div>
+        <div id="live-date" class="text-xs text-stone-300 capitalize font-medium mt-0.5">Cargando fecha...</div>
+        <div id="liturgical-badge" class="mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+          Tiempo Litúrgico
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <nav class="bg-white border-b border-stone-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-4xl mx-auto flex justify-around sm:justify-start sm:gap-8 px-4 text-xs sm:text-sm font-cinzel">
+      <button onclick="cambiarPestana('santo')" id="tab-santo" class="py-3 px-2 tab-active transition-all">El Santo & Pensamiento</button>
+      <button onclick="cambiarPestana('grafico')" id="tab-grafico" class="py-3 px-2 text-stone-500 hover:text-stone-900 transition-all">Taller Gráfico</button>
+      <button onclick="cambiarPestana('redactor')" id="tab-redactor" class="py-3 px-2 text-stone-500 hover:text-stone-900 transition-all">Consejero Pastoral</button>
+      <button onclick="cambiarPestana('notas')" id="tab-notas" class="py-3 px-2 text-stone-500 hover:text-stone-900 transition-all">Cuaderno de Notas</button>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO CENTRAL -->
+  <main class="max-w-4xl mx-auto w-full p-4 sm:p-6 flex-grow">
+
+    <!-- SECCIÓN 1: EL SANTO & PENSAMIENTO DE GRATITUD -->
+    <section id="sec-santo" class="space-y-6">
+      
+      <!-- Tarjeta del Santo del Día -->
+      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-50 rounded-full blur-2xl pointer-events-none"></div>
+        <span class="text-xs font-cinzel font-bold text-liturgia-doradoOscuro uppercase tracking-wider">Santoral de Hoy</span>
+        <h2 id="santo-nombre" class="text-2xl sm:text-3xl font-serif font-bold text-stone-900 mt-1">Cargando conmemoración...</h2>
+        <p id="santo-cita" class="text-stone-600 font-serif italic mt-2 text-sm sm:text-base leading-relaxed">
+          "La gracia se perfecciona en la fidelidad del servicio cotidiano."
+        </p>
+        <div class="mt-4 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
+          <span id="santo-celebracion">Fiesta de la Iglesia</span>
+          <button onclick="cargarSantoAleatorio()" class="text-liturgia-doradoOscuro hover:underline font-medium">Ver otra conmemoración ⟳</button>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Pensamiento Fraterno para JH (Gratitud 365) -->
+      <div class="bg-liturgia-pergamino border border-amber-200/80 rounded-xl p-6 relative shadow-sm">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-lg">🕯️</span>
+          <h3 class="text-xs font-cinzel font-bold uppercase tracking-widest text-liturgia-doradoOscuro">Una Palabra de Aprecio Fraternal · Para JH</h3>
+        </div>
+        <p id="frase-fraterna" class="text-stone-800 font-serif text-base sm:text-lg italic leading-relaxed">
+          "Hay amistades que no necesitan de la prisa ni de la presencia diaria; se sostienen en la certeza de la lealtad y el respeto mutuo a través de los años."
+        </p>
+        <div class="mt-4 flex justify-between items-center text-xs text-stone-500">
+          <span>Reflexión del día (1 de 365)</span>
+          <button onclick="cambiarFraseGratitud()" class="px-3 py-1 bg-white border border-stone-300 rounded shadow-sm text-stone-700 hover:bg-stone-50 transition">
+            Leer otra reflexión ➔
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECCIÓN 2: TALLER GRÁFICO (CREADOR DE INFOGRAFÍAS Y ESTADOS) -->
+    <section id="sec-grafico" class="hidden space-y-6">
+      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+        <h2 class="text-xl font-cinzel font-bold text-stone-900">Taller de Publicación & Estados</h2>
+        <p class="text-xs text-stone-500 font-serif mt-1">Genera imágenes litúrgicas sobrias y listas para compartir en WhatsApp, Facebook o YouTube.</p>
+
+        <!-- Controles -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-xs">
+          <!-- Selector de Tamaño -->
+          <div>
+            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Formato / Tamaño:</label>
+            <select id="canvas-size" onchange="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded bg-white">
+              <option value="9_16">Estado WhatsApp / Stories (9:16)</option>
+              <option value="4_3">Post Facebook / Cuadrante (4:3)</option>
+              <option value="16_9">Portada YouTube / Facebook (16:9)</option>
+            </select>
+          </div>
+
+          <!-- Selector de Estilo Visual -->
+          <div>
+            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Estilo de Arte:</label>
+            <select id="canvas-style" onchange="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded bg-white">
+              <option value="dore">Grabado Gustave Doré (Tinta y Pergamino)</option>
+              <option value="catedral">Mármol Catedral (Pizarra & Dorado)</option>
+              <option value="minimal">Clásico Sacro (Limpio y Blanco)</option>
+            </select>
+          </div>
+
+          <!-- Tipo de Contenido -->
+          <div>
+            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Disposición:</label>
+            <select id="canvas-layout" onchange="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded bg-white">
+              <option value="completa">Infografía Completa (Título + Cita)</option>
+              <option value="solotexto">Solo Reflexión / Versículo</option>
+              <option value="solemne">Anuncio Solemne / Misa</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Campos de Texto Editables -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-xs">
+          <div>
+            <label class="block font-semibold mb-1 text-stone-700">Título / Santo:</label>
+            <input type="text" id="canvas-title-input" value="San Pedro Apóstol" oninput="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded">
+          </div>
+          <div>
+            <label class="block font-semibold mb-1 text-stone-700">Subtítulo / Fecha:</label>
+            <input type="text" id="canvas-date-input" value="Catedral Metropolitana de Cali" oninput="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block font-semibold mb-1 text-stone-700">Cita Bíblica o Mensaje:</label>
+            <textarea id="canvas-quote-input" rows="2" oninput="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded">"Tú eres Pedro, y sobre esta piedra edificaré mi Iglesia." (Mt 16, 18)</textarea>
+          </div>
+        </div>
+
+        <!-- Vista Previa del Lienzo -->
+        <div class="mt-6 flex flex-col items-center">
+          <div class="border-4 border-stone-800 shadow-xl rounded overflow-hidden max-w-full bg-stone-900">
+            <canvas id="sacroCanvas" width="540" height="960" class="max-h-[480px] w-auto block"></canvas>
+          </div>
+          <div class="mt-4 flex gap-3">
+            <button onclick="descargarImagen()" class="px-5 py-2.5 bg-liturgia-carbon text-liturgia-dorado font-cinzel text-xs font-bold rounded shadow hover:bg-black transition flex items-center gap-2 border border-liturgia-dorado">
+              <span>⬇</span> Descargar Imagen PNG
+            </button>
+            <button onclick="ponerDatosDelDia()" class="px-4 py-2.5 bg-stone-100 text-stone-700 font-cinzel text-xs rounded hover:bg-stone-200 transition">
+              Cargar Santo de Hoy
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: CONSEJERO DE REDACCIÓN PASTORAL -->
+    <section id="sec-redactor" class="hidden space-y-6">
+      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+        <h2 class="text-xl font-cinzel font-bold text-stone-900">Consejero de Redacción Pastoral</h2>
+        <p class="text-xs text-stone-500 font-serif mt-1">Estructurador ágil de cartas, homilías y mensajes con el tono adecuado.</p>
+
+        <!-- Selector de Tono -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-xs font-cinzel">
+          <button onclick="seleccionarPlantilla('pastoral')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Cercano & Pastoral</button>
+          <button onclick="seleccionarPlantilla('solemne')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Solemne / Curia</button>
+          <button onclick="seleccionarPlantilla('homilia')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Guion de Homilía</button>
+          <button onclick="seleccionarPlantilla('fraterno')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Felicitación / Amistad</button>
+        </div>
+
+        <!-- Área de Edición -->
+        <div class="mt-4">
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs font-semibold text-stone-700 uppercase tracking-wider" id="label-redactor">Borrador del Documento:</label>
+            <button onclick="copiarTextoRedactado()" id="btn-copiar" class="text-xs text-liturgia-doradoOscuro hover:underline font-bold">Copiar Texto 📋</button>
+          </div>
+          <textarea id="texto-pastoral" rows="10" class="w-full p-4 border border-stone-300 rounded font-serif text-stone-800 text-sm leading-relaxed focus:outline-none focus:ring-1 focus:ring-amber-500 bg-stone-50"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: CUADERNO DE APUNTES & INTENCIONES -->
+    <section id="sec-notas" class="hidden space-y-6">
+      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-xl font-cinzel font-bold text-stone-900">Cuaderno de Homilías & Apuntes</h2>
+            <p class="text-xs text-stone-500 font-serif">Las notas se guardan automáticamente en la memoria de este dispositivo.</p>
+          </div>
+          <span id="status-guardado" class="text-[10px] text-emerald-600 font-mono font-semibold">Guardado ✓</span>
+        </div>
+
+        <textarea id="cuaderno-notas" oninput="guardarNotas()" rows="12" placeholder="Escriba aquí ideas para sermones, intenciones especiales de misa de la Catedral o recordatorios..." class="w-full mt-4 p-4 border border-stone-300 rounded font-serif text-stone-900 text-sm leading-relaxed bg-amber-50/20 focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+        
+        <div class="mt-3 flex justify-between items-center text-xs">
+          <button onclick="limpiarNotas()" class="text-rose-700 hover:underline">Borrar notas</button>
+          <button onclick="descargarNotasTxt()" class="text-stone-700 hover:underline font-semibold">Descargar como texto (.txt) ↓</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA SUTIL -->
+  <footer class="bg-stone-100 border-t border-stone-200 py-4 px-4 text-center text-xs text-stone-500 font-serif">
+    JH - Agenda Personal · Catedral Metropolitana de San Pedro Apóstol · Cali, Colombia
+  </footer>
+
+  <!-- LÓGICA JAVASCRIPT INTEGRADA -->
+  <script>
+    // BANCO DE FRASES DE GRATITUD (365 DÍAS MOTOR)
+    const frasesGratitud = [
+      "Hay amistades que no necesitan de la prisa ni de la presencia diaria; se sostienen en la certeza de la lealtad y el respeto mutuo a través de los años.",
+      "Agradezco sinceramente a Dios por tu vida, tu vocación y por haber sido providencia serena en los momentos más difíciles de mi camino.",
+      "La verdadera generosidad no hace ruido ni busca reconocimiento; simplemente extiende la mano con nobleza, tal como lo hiciste conmigo.",
+      "Más de dos décadas de amistad me han enseñado que los lazos sinceros resisten el tiempo, la distancia y los silencios.",
+      "Tu respaldo en mis proyectos fue mucho más que un apoyo económico: fue un voto de confianza que jamás olvidaré.",
+      "En medio de las responsabilidades del altar y la Catedral, guardo siempre un lugar de oración y gratitud por tu ministerio y tu persona.",
+      "Un amigo leal es un refugio silencioso; gracias por ser ese punto de apoyo sereno en mi historia.",
+      "Acompañarte desde el día de tu ordenación sacerdotal ha sido un honor que el tiempo solo ha hecho más valioso.",
+      "Que la paz y la gracia que procuras a tantos fieles en San Pedro Apóstol retornen colmadas a tu propio espíritu.",
+      "Dicen que la gratitud es la memoria del corazón; el mío no olvida a quien me tendió la mano cuando comenzaba a caminar cuesta arriba.",
+      "Tu testimonio sacerdotal se distingue por la sobriedad, la templanza y el don de servir sin buscar aplausos humanos.",
+      "En un mundo lleno de estruendo y prisa, tu serenidad siempre ha sido una lección viva de fe.",
+      "Agradezco a la vida haber cruzado nuestros caminos en el Tolima y verte florecer como pastor en esta amada tierra caleña.",
+      "Que el Señor bendiga cada palabra que pronuncias en el púlpito y cada bendición que impartes en la Catedral.",
+      "Tener un amigo sacerdote como tú es un recordatorio constante de que la generosidad de Dios se manifiesta en personas reales.",
+      "Gracias por creer en mí y en mis sueños, incluso antes de que dieran frutos visibles.",
+      "La verdadera caridad no calcula; simplemente comprende, acoge y bendice. Gracias por ese testimonio.",
+      "En cada logro y avance de mi trabajo, hay una semilla de tu fe y de tu desinteresado apoyo.",
+      "Que el Santo de este día interceda especialmente por tus intenciones más íntimas y cuide tu salud y serenidad.",
+      "Los años pasan, pero la gratitud sincera y el respeto mutuo permanecen intactos como el primer día.",
+      "Hay deudas que nunca se pagan con dinero, sino con aprecio constante, lealtad y bendición diaria.",
+      "Gracias, JH, por tu hombría de bien, tu calidez humana y tu sabiduría pastoral a lo largo de estos 23 años.",
+      "Que la luz de la Palabra ilumine siempre tus homilías y reconforte tu corazón en los días de mayor fatiga.",
+      "Pocas personas saben estar presentes desde la distancia con tanta nobleza y desprendimiento como tú.",
+      "Esta herramienta no busca más que recordarte, día a día, que en algún lugar un viejo amigo agradece a Dios por haberte conocido."
+    ];
+
+    // SANTORAL BASE
+    const santoralColeccion = [
+      { santo: "San Pedro Apóstol", cita: "«Tú eres el Cristo, el Hijo de Dios vivo.» (Mt 16, 16)", tipo: "Patrono Principal de la Catedral" },
+      { santo: "San Juan María Vianney (Santo Cura de Ars)", cita: "«El sacerdocio es el amor del corazón de Jesús.»", tipo: "Patrono de los Párrocos" },
+      { santo: "San Juan Pablo II", cita: "«¡No tengáis miedo! Abrid de par en par las puertas a Cristo.»", tipo: "Memoria Libre" },
+      { santo: "San Francisco de Asís", cita: "«Comienza haciendo lo que es necesario, después lo que es posible y de repente harás lo imposible.»", tipo: "Memoria Obligatoria" },
+      { santo: "San Agustín de Hipona", cita: "«Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.»", tipo: "Doctor de la Iglesia" },
+      { santo: "Santa Teresa de Jesús", cita: "«Nada te turbe, nada te espante; todo se pasa, Dios no se muda.»", tipo: "Doctora de la Iglesia" },
+      { santo: "San José, Esposo de la Virgen", cita: "«Hombre justo, custodio fiel del Redentor y modelo de silencio fecundo.»", tipo: "Solemnidad" },
+      { santo: "San Ignacio de Loyola", cita: "«En todo amar y servir a la mayor gloria de Dios.»", tipo: "Memoria" }
+    ];
+
+    // INICIALIZACIÓN
+    window.addEventListener('DOMContentLoaded', () => {
+      iniciarReloj();
+      cargarSantoHoy();
+      cargarFraseDelDia();
+      cargarNotasGuardadas();
+      actualizarCanvas();
+    });
+
+    // RELOJ LITÚRGICO
+    function iniciarReloj() {
+      function actualizar() {
+        const ahora = new Date();
+        document.getElementById('live-time').innerText = ahora.toLocaleTimeString('es-CO');
+        const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('live-date').innerText = ahora.toLocaleDateString('es-CO', opciones);
+
+        // Color Litúrgico según mes aproximado (adaptable)
+        const mes = ahora.getMonth();
+        const badge = document.getElementById('liturgical-badge');
+        if (mes === 11 || mes === 2) { // Adviento / Cuaresma
+          badge.className = "mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-purple-950 text-purple-200 border border-purple-800";
+          badge.innerText = "Tiempo Penitencial / Morado";
+        } else if (mes === 3 || mes === 4 || mes === 11) { // Pascua / Navidad
+          badge.className = "mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-400";
+          badge.innerText = "Tiempo de Fiesta / Blanco";
+        } else {
+          badge.className = "mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800";
+          badge.innerText = "Tiempo Ordinario / Verde";
+        }
+      }
+      actualizar();
+      setInterval(actualizar, 1000);
+    }
+
+    // PESTAÑAS
+    function cambiarPestana(pestana) {
+      ['santo', 'grafico', 'redactor', 'notas'].forEach(id => {
+        document.getElementById(`sec-${id}`).classList.add('hidden');
+        document.getElementById(`tab-${id}`).className = 'py-3 px-2 text-stone-500 hover:text-stone-900 transition-all';
+      });
+      document.getElementById(`sec-${pestana}`).classList.remove('hidden');
+      document.getElementById(`tab-${pestana}`).className = 'py-3 px-2 tab-active transition-all';
+      if (pestana === 'grafico') actualizarCanvas();
+    }
+
+    // SANTO Y GRATITUD
+    let indexFrase = 0;
+    function cargarFraseDelDia() {
+      const diaDelAno = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      indexFrase = diaDelAno % frasesGratitud.length;
+      document.getElementById('frase-fraterna').innerText = `"${frasesGratitud[indexFrase]}"`;
+    }
+
+    function cambiarFraseGratitud() {
+      indexFrase = (indexFrase + 1) % frasesGratitud.length;
+      document.getElementById('frase-fraterna').innerText = `"${frasesGratitud[indexFrase]}"`;
+    }
+
+    function cargarSantoHoy() {
+      const item = santoralColeccion[0];
+      document.getElementById('santo-nombre').innerText = item.santo;
+      document.getElementById('santo-cita').innerText = item.cita;
+      document.getElementById('santo-celebracion').innerText = item.tipo;
+    }
+
+    function cargarSantoAleatorio() {
+      const azar = santoralColeccion[Math.floor(Math.random() * santoralColeccion.length)];
+      document.getElementById('santo-nombre').innerText = azar.santo;
+      document.getElementById('santo-cita').innerText = azar.cita;
+      document.getElementById('santo-celebracion').innerText = azar.tipo;
+    }
+
+    function ponerDatosDelDia() {
+      document.getElementById('canvas-title-input').value = document.getElementById('santo-nombre').innerText;
+      document.getElementById('canvas-quote-input').value = document.getElementById('santo-cita').innerText;
+      actualizarCanvas();
+    }
+
+    // TALLER GRÁFICO (CANVAS EXPORTACIÓN)
+    function actualizarCanvas() {
+      const canvas = document.getElementById('sacroCanvas');
+      const ctx = canvas.getContext('2d');
+      const sizeVal = document.getElementById('canvas-size').value;
+      const styleVal = document.getElementById('canvas-style').value;
+      const title = document.getElementById('canvas-title-input').value;
+      const subtitle = document.getElementById('canvas-date-input').value;
+      const quote = document.getElementById('canvas-quote-input').value;
+
+      // Dimensiones
+      if (sizeVal === '9_16') {
+        canvas.width = 1080; canvas.height = 1920; // Formato Estado WhatsApp / Stories
+      } else if (sizeVal === '4_3') {
+        canvas.width = 1200; canvas.height = 900;  // Formato Facebook Post
+      } else {
+        canvas.width = 1920; canvas.height = 1080; // Formato Portada YouTube / Banner
+      }
+
+      const W = canvas.width;
+      const H = canvas.height;
+
+      // Fondos y Paletas
+      if (styleVal === 'dore') {
+        ctx.fillStyle = '#EFE9DE'; // Pergamino / papel de grabado
+        ctx.fillRect(0, 0, W, H);
+        // Borde doble clásico
+        ctx.strokeStyle = '#2B2621';
+        ctx.lineWidth = 14;
+        ctx.strokeRect(30, 30, W - 60, H - 60);
+        ctx.lineWidth = 4;
+        ctx.strokeRect(48, 48, W - 96, H - 96);
+        ctx.fillStyle = '#2B2621';
+      } else if (styleVal === 'catedral') {
+        ctx.fillStyle = '#14161A'; // Pizarra negra
+        ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = '#C5A059'; // Dorado
+        ctx.lineWidth = 12;
+        ctx.strokeRect(30, 30, W - 60, H - 60);
+        ctx.lineWidth = 3;
+        ctx.strokeRect(46, 46, W - 92, H - 92);
+        ctx.fillStyle = '#FAF7F2';
+      } else {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = '#9E7A32';
+        ctx.lineWidth = 8;
+        ctx.strokeRect(30, 30, W - 60, H - 60);
+        ctx.fillStyle = '#1C1F26';
+      }
+
+      // Cruz / Emblema Sacro Superior
+      ctx.textAlign = 'center';
+      ctx.font = 'bold 54px serif';
+      ctx.fillText('☩', W / 2, H * 0.16);
+
+      // Subtítulo Superior
+      ctx.font = '600 28px sans-serif';
+      ctx.letterSpacing = '6px';
+      ctx.fillText(subtitle.toUpperCase(), W / 2, H * 0.22);
+
+      // Título Principal
+      ctx.font = 'bold 74px serif';
+      ctx.letterSpacing = '1px';
+      ctx.fillText(title, W / 2, H * 0.35);
+
+      // Línea divisoria ornamental
+      ctx.beginPath();
+      ctx.moveTo(W * 0.3, H * 0.40);
+      ctx.lineTo(W * 0.7, H * 0.40);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = styleVal === 'catedral' ? '#C5A059' : '#8A7356';
+      ctx.stroke();
+
+      // Cita o Reflexión (Ajuste de línea automático)
+      ctx.font = 'italic 44px serif';
+      const lineas = ajustarTexto(ctx, quote, W * 0.75);
+      let posY = H * 0.52;
+      lineas.forEach(l => {
+        ctx.fillText(l, W / 2, posY);
+        posY += 62;
+      });
+
+      // Firma inferior discreta
+      ctx.font = '300 24px sans-serif';
+      ctx.letterSpacing = '3px';
+      ctx.fillText("JH - AGENDA PERSONAL · CATEDRAL DE SAN PEDRO APÓSTOL", W / 2, H * 0.90);
+    }
+
+    function ajustarTexto(ctx, texto, anchoMax) {
+      const palabras = texto.split(' ');
+      const lineas = [];
+      let lineaActual = palabras[0];
+
+      for (let i = 1; i < palabras.length; i++) {
+        const prueba = lineaActual + ' ' + palabras[i];
+        if (ctx.measureText(prueba).width < anchoMax) {
+          lineaActual = prueba;
+        } else {
+          lineas.push(lineaActual);
+          lineaActual = palabras[i];
+        }
+      }
+      lineas.push(lineaActual);
+      return lineas;
+    }
+
+    function descargarImagen() {
+      const canvas = document.getElementById('sacroCanvas');
+      const enlace = document.createElement('a');
+      enlace.download = 'estado-liturgico-jh.png';
+      enlace.href = canvas.toDataURL('image/png');
+      enlace.click();
+    }
+
+    // CONSEJERO DE REDACCIÓN
+    const plantillas = {
+      pastoral: `Estimada comunidad de la Catedral de San Pedro Apóstol,\n\nCon un saludo fraterno en Cristo Jesús, me dirijo a ustedes para recordarles la importancia de perseverar en la oración y en la caridad mutua en este tiempo de gracia...\n\nOremos juntos por nuestras familias y enfermos.\n\nPbro. Jaime Humberto Ramos Escobar\nPárroco`,
+      solemne: `Al Señor Arzobispo y Miembros del Honorable Cabildo Catedralicio,\n\nPor medio de la presente, me permito comunicarles con atento y respetuoso saludo filial los pormenores concernientes a las celebraciones litúrgicas de nuestra Catedral...\n\nAgradeciendo de antemano su bendición pastoral,\n\nEn Cristo Sumo y Eterno Sacerdote,\nPbro. Jaime Humberto Ramos Escobar`,
+      homilia: `ESQUEMA DE HOMILÍA DOMINICAL\n\n1. VER (Realidad cotidiana):\n- ¿Dónde nos encontramos hoy con la sed de Dios?\n\n2. JUZGAR (Luz del Evangelio):\n- La respuesta de Jesús: confianza frente al desaliento.\n\n3. ACTUAR (Compromiso pastoral):\n- Propósito concreto de caridad para la comunidad en esta semana.`,
+      fraterno: `Apreciado hermano y amigo:\n\nEn este día especial quiero hacerte llegar mi más sincero saludo, acompañado de mi oración y bendición sacerdotal. Que el Señor siga colmando tu vida de salud, trabajo fecundo y la paz serena que solo proviene de Él.\n\nUn fuerte abrazo con aprecio sincero,\nPbro. Jaime Humberto Ramos Escobar`
+    };
+
+    function seleccionarPlantilla(tipo) {
+      document.getElementById('texto-pastoral').value = plantillas[tipo];
+    }
+
+    function copiarTextoRedactado() {
+      const area = document.getElementById('texto-pastoral');
+      navigator.clipboard.writeText(area.value).then(() => {
+        const btn = document.getElementById('btn-copiar');
+        btn.innerText = '¡Copiado! ✓';
+        setTimeout(() => btn.innerText = 'Copiar Texto 📋', 2000);
+      });
+    }
+
+    // CUADERNO DE NOTAS
+    function guardarNotas() {
+      const notas = document.getElementById('cuaderno-notas').value;
+      localStorage.setItem('notas_jh_catedral', notas);
+      const st = document.getElementById('status-guardado');
+      st.innerText = 'Guardando...';
+      setTimeout(() => st.innerText = 'Guardado ✓', 600);
+    }
+
+    function cargarNotasGuardadas() {
+      const guardado = localStorage.getItem('notas_jh_catedral');
+      if (guardado) {
+        document.getElementById('cuaderno-notas').value = guardado;
+      }
+    }
+
+    function limpiarNotas() {
+      if (confirm('¿Desea borrar las notas actuales del cuaderno?')) {
+        document.getElementById('cuaderno-notas').value = '';
+        localStorage.removeItem('notas_jh_catedral');
+      }
+    }
+
+    function descargarNotasTxt() {
+      const contenido = document.getElementById('cuaderno-notas').value;
+      const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'notas-homilias-jh.txt';
+      a.click();
+    }
+  </script>
+</body>
+</html>
+```
