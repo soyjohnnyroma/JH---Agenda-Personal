@@ -4,163 +4,453 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JH - Agenda Personal</title>
-  
-  <!-- Favicon y Apple Touch Icon de Alta Definición (512x512) para Escritorio y Móvil -->
-  <link rel="icon" type="image/png" href="data:image/png;base64,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">
 
-  <!-- Web App Manifest integrado para Pantalla de Inicio -->
-  <link rel="manifest" href='data:application/manifest+json,{"name":"JH - Agenda Personal","short_name":"JH Agenda","start_url":".","display":"standalone","background_color":"#121418","theme_color":"#121418","icons":[{"src":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAlqklEQVR4nO3de7ReZX0n8N/JPSEm3BJIEAgoKIJcAgEqRYhYpY5odWwrjs7owqWz2jXTG7PaTmc5Vaf3rE6tq9NRq1LbitZWa3GsbfGKeEMSEKRyE5RbuAYSSHISkjN/wMnl5Fzey977eZ69P5+1XDU1591v3r3f9/vdv2e/+0QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABONpH4CwHCuveLSsVTbPu+tV/oMgUJ580KGUoZ6XZQFyIs3JCTQxoAfloIAzfKGgxoJ+uEpBlAPbyyogKBvnmIAw/EGgj4J+3wpBdA7bxaYgcAvl0IAU/PmgAkEfnspBLCXNwOdJ/C7SyGgyxz8dJLQZyJlgK5xwNMJAp9+KQS0nQOc1hL6VEUZoI0c1LSK0KduygBt4UCmeEKfVJQBSubgpUhCf69LLv9ysm1ftW5tsm3nRhmgNA5YitKV4E8Z6nXpSllQBCiFA5XstTX02xjyg2prOVAGyJmDk2y1JfgF/eDaUgwUAXLkoCQrpYe+sK9f6aVAGSAXDkSyUGLwC/t8lFgKFAFScwCSTGmhn3Pgr3vHysa3efkH7298m70qrRAoA6TgoKNxpQR/6sBPEep1SV0WSikEigBNcrDRmNyDv+nAb1PAD6vpgpB7IVAEaIKDjNrlHPxNhL6gH1wTxSDnMqAIUCcHF7XJMfjrDvxUYZ9ixN7Wf2uOhUARoA4OKiqXW/DXGfp1hmDqdfMqlfo65VYGFAGq5GCiMjkFfx2hX0eItSnkB1XK65pTGVAEqIKDiKHlEvw5h76g71/Or30uZUARYBgOHgbWxuCvInSEfX1y2z+KACVz0NC3HII/l9AX9unlsv9yKAOKAP1wsNCztgR/LoFBPVLvX0WAUjhI6EnK8E8Z+gK/fCn3fcoyoAQwEwcI0yo5+Af54Bf47ZfiuFAEyJEDg0mlCv4UZ/tCv7tSHCupyoAiwEQOCA6QIvybPtsX+kzU9DGUoggoAezLwcAepQW/0KcuTR5bigCpOAhodfALfYbV1PGmCNA0O7/jmg7/JoJf6FOXJo7BpouAEtBddnxHlRL8zvbJURPHpSJA3ezwDmoy/OsOfqFPanUfq00WASWgW+zsDhH8UB9FgNLYyR3RVPjXGfxCn1LUeTw3VQSUgPazg1tO8EM6igA5s2NbLOfwF/x0SV3HuxLAMOzUFio5+IU+bVfHe0ARYBB2Zss0Ef6CH4ZXahFQAtrDjmyRusNf8EP1SiwCSkA72IktkONZv+CH/lT9njENYCZ2XuFyO+sX/DCc0oqAElAuO65gOYW/4IdqVfmeUgKYjJ1WoJyCP0L4Q11MA6iTnVWYnMJf8EMzTAOogx1VkDrDX/BD/kopAkpAGeykApRy1i/4oRlVvQ9NA7rNzsmcs35gMqYBDMuOyVgJ4S/4Ia0SpgFKQJ7slEzVFf6CH9op9yKgBORnVuonwIGEP9Cv6d6Xvfw2wnGD/mrvmTT1S8ronUaWkRxG/oIfylfF+9iSQPvZCZlw1g9UyZIAM7EDMpA6/AU/tFfO0wAlIC3XACQm/IE6VXFtgOsC2kn7SqiOg7+Kkb/gh3aq4j1fxzTAJCANL3oiKcPfWT90V65LAkpA87zgCeQY/oIfumXYzwIloHyuAWiY8AdyMNX7PuV1Aa4JaJa21aCqD24jf2BYOS4JmAQ0w4vckNzCX/AD+8ptSUAJqJ8lgAYIfyB3uS0JWA6on4ZVsxThb+QPDGrYzw+TgHJ4YWuUU/gLfqAfw3yWKAFlsARQE+EPlGyYJQHLAWXQqmpQ5cFqvR9IKaeLA00CqmUCUDHhD7RJThcHmgRUS5uqUC7hL/iBOgzzeWMSkB8vYkWaDn9n/UAKuVwcqAQMzxJABYQ/0BW5XBxoOWB4CsCQhD/QNUpAOygAQxD+QFcpAeVTAAYk/IGuUwLK5iKKAeQQ/oIfyMmgn1MuDEzHBKBPwh/gQJN9LpkE5E0B6IPwB5iaElAWBaBHwh9gZkpAOayX9KiqA0r4U6d3XXZqrDnpsFoe+z0f+V5cd8ujtTw27ZP6mgDXA8zMBKAHwh+gP6knAaYAM1MAZiD8AQajBOTNiGQawp/SjC8BPLRpe1z2O98c+vFOP+GQeO87T48ISwAMznJAnkwApiD8AaphEpAnBWASTR4swh/ogkFLQFWUgAMpADWaqb0Kf6BLBikBVX49kP0pABM0NfoX/kAXpSwBpgD7UwD2IfwB6qcE5EEBeJbwB2iOEpCeAlAh4Q/QO9cEpKUARDVt0EEJ0IwqPm9NARSAxg4CZ/8AB0r59cCul4BOFwDr/gDpuR4gjU4XgCoIf4DhuR6geZ0tAE2s+wt/gN6lKgFdnQJ0sgAIf4A8KQHN6VwBaGInC3+AwaW6MLBrJaBzBaAK1p0A8uJzuX+dKgBG/wBlsBRQv84UAOEPUBYloF6dKQB1E/4A1Ut5o6C260QBSHGrX+EPUI1+P09NAXrT+gKQavQPQH0sBQyv9QVgWNb9AdJzp8DqtboA1N3ehD9Ac1JcD9DmKUBrC4B1f4D2cT1AdVpbAIZl3R+gDJYCBtPKAmD0D9BelgKq0boCUPfoX/gDpNdvCbAUcKDWFYBhWfcHKEOK6wHapFUFIMXoH4B8WAroXasKwLCM/gHKkmIpoC1aUwCGbWVG/wBlanopoC1TgFYUAKN/APZlKWBmrSgAwzL6ByibpYD+FV8AjP4BiLAU0K/iC0CdjP4ByuZzfGojqZ/AMOo8+zf6p0TvuuzUWHPSYbU89ns+8r247pZHa3lsqFK/n99XrVs71PbOe+uVRWZpsRMAo38AJmMpoDfFFoA6GRkBtIvP9QMVObYw+gdgJpYCpmcCMAPhD1Amn9/TK64ANH32D0B71HlvgNKuBSiuADRJewQom8/xqRVVAJz9AzAsU4BnFFUAhuHCP4BucpvgyRVTAJpsVcIfoF2a/FwvZQpQTAEYhtE/ABN1fQpQRAFw9g/AsEwB9ldEARiGs38AptLlKUD2BcDZPwBVMQXYK/sCMAxn/wDMpKtTgKwLgLN/AKpmCvCMrAvAMPo5+xf+AN0y8XO/i1OAbAtAzq0JAHqVa55lWwCG4ewfgJl0fQqQZQHItS0BwCByzLUsC8AwnP0D0KsuTwGyKwA5tiQAGFZu+ZZdARiGs38A+tXVKUCrCgAA0JusCsAw4xFn/wAMqqkpQE7LAFkVAACgGdkUAGf/AKTUtSlANgUAAGhOqwuA3/gHwDDanCNZFIC6xv8TGf8DMJ1+cqL0ZYAsCkAd2tzaAGhOW/MkeQFw9g9ATroyBUheAACA5rWyAPjqHwDD6OcrgaVKWgCaGv8DQF1KXQZo3QSgjS0NgPTali/JCoCL/wDIWdsvBmzVBKBt7QyAvLQpZ1pVACZy9g/AMNqcI0kKgIv/AGib0pYBWjMBaNNYBoB8tSVviioALv4DoGlNXQzYtMYLQOpbHwJAjprOx6ImAFNx5z8A6tTGOwMWUwBKGqsA0F2l5FWjBaCO8UYbWhgA5akjf5pcBihmAtAr438A6tC2fCmiAJQyTgGAiDJyq7ECYPwPQNuUvAxQxASgV20bzwCQlzblTPYFoIQxCgBMlHt+ZV8ApmL8D0AOSs2jRgpAE+sZbRrLAJCvJvKmidycU/cGaKf58+fHj+64KfXTSG7r1m1x/AtO6/vnuv76ffmr18Slb75s6Mf5x09/Is5es7qCZ1SeXbt2xVGrTkr9NChY1ksAua+fAMB0cs6x2gtAE1//M/4HoElN/G6AupcBsp4AAAD1yLYA5Dw2AYBe5Zpn2RaAqRj/A5CD0n9FcK0FoMnfagQAbVNnjhY3AQAAhpdlAch1vQQABpFjrmVZAKZi/R+AnJR8HUBtdwK0/t9uo6OjceTRJw79OHPmzI577/q3Cp7R4M44+6XxwAMbG93msK/fC19wYnzl6s9V+Iz6s37DjfGq1/xssu2Pe83r3zjUz9+04Rux7PDDK3o2/XveC0+Pp57ammz7lOHaKy4dO++tV45U/bhFTQAAgGpkVwCmWicpaawCQHdNlVe5XQeQXQHolfV/AHJQah7VUgCs/wNAderI1WInAADA4LIqALmtjwBAlXLKuawKwFR8/x+AnJV4P4AiCgAAUK3KC4ALAAGgelXnqwkAAHRQNgXADYAAaJPcbwiUTQHolQsAAchRaflUXAEAAIanAABAB1VaAHwDAADqU2XOZjEBcAEgAG2U84WAWRSAXpV2gQUA3VJSThVVAACAaigAANBBCgAAdFBlBcA3AACgflXlbfIJgG8AANBmuX4TIHkB6FVJV1YC0F2l5FUxBQAAqI4CAAAdpAAAQAcpAADQQQoAAHRQJQVg0O8kpv4KBACkNGgOVnEvgCwnABO/M1nKVyoAIOLA3Mrx3jZZFgAAoF4KAAB0kAIAAB2kAABABykAANBBCgAAdJACAAAdpAAAQAcpAADQQUMXALcBBoDBpbodcHYTALcBBqANcr8d8JzUTwAoz+ozTouN99yW+mkAQ8huAgAA1E8BAIAOUgAAoIMUAADoIAUAADpIAQCADlIAAKCDFAAA6CAFAAA6SAEAgA5yK2Cgb+s33Bives3Ppn4aQ7tpwzdi2eGHp34akIQJAAB0kAIAAB2kAABABykAANBBCgAAdJACAAAdpAAAQAcpAADQQQoAAHSQAgAAHaQAAEAHKQAA0EEKAAB0kAIAAB2kAABABykAANBB2RWAyz94/35/XveOlYmeCQAMbmJ+Tcy31IYuAOe99cqRQX7uqnVrh900ABRv0DwcNH/HZTcBAADqpwAAQAcpAADQQQoAAHSQAgAAHaQAAEAHKQAA0EEKAAB0kAIAAB2UZQFwO2AASpb7bYAjKioAbgcMAP1LdRvgiEwnAABAvRQAAOggBQAAOkgBAIAOUgAAoIOKKQC+CghACUrJq+QFYKqvQOT4nUkA6NdUeZb6q/CVFYAqvpMIAEyvqrxNPgEAAJqnAABABykAANBBRRWAUq6sBKCbSsqpLAqAbwIA0Ea5fgMgouIC4JsAAFCfKnM2iwkAANAsBQAAOqi4AlDSBRYAdEdp+ZRNAXAhIABtkvMFgBEZFQAAoDmVFwDfBACA6lWdryYAANBBc1I/gV5c/sH797u4Yt07Vro2gKLNnz8/fnTHTamfxsBWn3FabLzntoF//stfvSYuffNlQz+Pf/z0J+LsNauHfpxU7vzBDQP/7K5du+KoVSdV92QYysQLAEvIqKwmALlcGAEAdcgp57IqAABAM2opAC4EBIDq1JGrxU4ASrvhAgDtVGoeZVcA3BAIgJLlfgOgcdkVALpl1qzZqZ9CjO3enfopADSutgLgOgB6MXt2+gKwfXQ09VMAmFJdeVrUBGDiWKXUdRf2mj07/SG4fbsCAAymxO//j0v/6TuJ3NZJqM/sDJYARk0AgJrlmGtF3AmQ9lqwYH7S7e/cuTPGxsYa3+7o6GgcefSJjW+3bV7z+jemfgpQrFonAK4DYCYLFy5Muv0tW55Mun2A6dSZo1kuAUzHdQDtsnDhgqTbf2Djg0m3D5Sr5PX/iIwLQI7rJVRv0aJFSbe/UQEAapZrnmVbAOiGgw9emnT7JgBAV9VeAOpYv7AM0B6HHnJI0u2bAACDaGL8X/d1dFlPAHIdm1CdQw45OOn2f3Db7Um3D7RbzjmWdQGg/Y5Yvizp9m+++Zak2wdIpZEC0MTXAS0DlGnlyhXJtr3lySfjRz++J9n2gTI1kTdN5GaxE4DSvm7B5FIWgFtu+UGSmwAB7VJqHmVfAHJePynJL7zzsth4z209/efSn39DY8/ruFXHNLatib7xre8k2zbQfrnnV/YFoB+WAaqxbNlhjWxn6dKlsXxZumsAvvilrybbNlCmNuVMYwWgia8DUo3nHnVUI9t54YnPb2Q7k9m06fFYv+HGZNsH2qHEr/+NK2ICkPsYpW2e/7zjGtnOmatPb2Q7k/nSV74Wu3fvTrZ9oN1KyK0iCkA/2jSeSeXkk0+KkZH6C+iaNWfWvo2pfPJTn062baBMbcuXRguAZYAyLF2yJE48od7x/Jw5s+Ml566pdRtTuevuH8U1X/9mkm0D7VHy+D+ioAlACeOUNrlo7UtrffyX/MQ5sXRpmt8D8LG/utLX/4DalJJXxRSA6fjdANV73WtfXevjv+H1P1Pr40/lic2b4+Of/Psk2wbKVfqv/p1M4wWgyfEGg3vxi0+O1WecVstjL1+2LF732n9Xy2PP5H3v/7/xxBNPJNk2wHSazseiJgD9jFVMAYb36//tl2t53P/+G78ac+fOreWxp3PvvffFX3zkY41vFyhbP3lSyvg/orACMJ02jGNyc8H558UbXv/aSh/zZRe+NH7+Z19f6WP26rff+/uxY8eOJNsG2qMteZOkAAwz5iipXbXBH/7ee+Kcs8+q5LFedNIL4s//7I8b+YrhRB//xKfic5//58a3C3THMPmUYnm8NROAyVgGGN6iRQvjU1deEZe8+qeHepy1F5wf//D3H4+lS5ZU9Mx6d/sdd8Zvvet/Nb5doHxtzpFWFYC2jGVyM2/evPjQn78vrvjw/4mTXnhiXz97/HGr4k//9x/GlX/94VjynOfU9AyntmnT43HZO/5LbNu2rfFtA+3TppyZk2rD5731ypFrr7h0oC9jX7VubVxy+Zd7+rvr3rGyVTsspYtf8fJ45U9dFNevvyGuufab8Y1vfjvuf2BjbNr0eDzxxOaYP39eLF26NI4/blWc9uKT4+UXXRjnnrMmZs1K0zM3b9kSP/cf3ha33X5Hku0DZWvq4r9U345LVgDqcvkH72/1yCa1kZGROOvMM+KsM8+IX/mvv5D66Uxpy5NPxpve8va46abvp34qQEu07WQy6RKAiwGpw+133BkXv/rfx3ev35D6qQAdUOLZf0TLrgEY586A3fX5L/xr/PQlb4g777wr9VMBCtbGO/9N1LolALpp44MPxbvf+/vxmc9+LvVTAShC8glAU8sAXZ8CfPRjH49f+tXfiO9ctz71U6nUzp074wMf+mj85IWvFP5AJdp+8d+45AWgLm0c1wxj27Zt8clPfTpe8/o3xk+uvTje/2cfiB/fc2/qpzWwJzZvjvf/2QfirHMvjP/5nt+LJ598KvVTAlqqrXmSzS/mGfQrgREx5VcCJ2txbd2Rg1p9xmnxmkteFRe/4qJYdewxqZ/OtMbGxuK6726Iz3z2qvjbv/tMPPXU1tRPCWiZfnKj5LP/iJZfA+ArgTNbv+HGWL/hxvjt9/xePO/4VfHyi9bGhRf8ZKw5c3UsXnxQ6qcXo6OjsX7DjfGFf/li/OPn/ikeeGBj6qcEdEibTxpbXQDoz50/vDvu/OFH4wMf+mjMnj07Tjn5pDj3nDVx2qmnxItPeVEcf9yqmD17dm3b3717d9xz731x6623x3XXb4hvf+e62HDDTbFz587atgnQVclHEPuqYxkgohtf52jCggUL4oTnHx/HHntMrDr2mDj2mKNj+fLD47BDD41DDz0kli5ZEvPmz4v58+bF3Llz4+ldu2LH6I7YsWNHjO545v9u3rwlHnn00XjkkUfj4UcejYcffiTuve/+uOOOO+POH94do6Ojqf+ZQEf1kxWlj/8jTADow/bt2+Omm2+Jm26+JfVTAWBIWX0LoK6vBLoxEADT6drZf0RmBQAAaEarCoApAAD9aursPzfZFYCcxiMAUJXc8i27AjAsUwAAetXVs/+ITAtAbi0JAIaRY65lWQCGZQoAwEy6fPYfkXEByLEtAUC/cs2zbAvAsEwBAJhK18/+IzIvAE22JiUAoBua/LzP9ew/IvMCMKx+pgAAdFMXz/4jCigApgAAVMXZ/17ZF4BhmQIAMJWunv1HFFIATAEAGJaz//0VUQCGZQoAwERdPvuPKKgAmAIAMChn/wcqpgAMq98pgBIA0A6TfZ53/ew/orACMGyrshQAQJ3hX8rZf0RhBaBppgAAZfM5PrXiCoApAACDcva/V3EFoGnaI0CZfH5Pr8gC0PQUwEEEUJamL/wr7ew/ImJO6ieQo8s/eL/Qp3ZHLVsUZ598eJx+wiGx4rCFsWTx3Jg/d3Zs3f50PPrEaNz9wFNxx72bY/2tj8W9D20daBsHLZwTH3vXeTFv7qzYNror/uO7r43tO3b1/PMvOm5p/MEvrp727zy0aXtc9jvfTPqYMBNLvAcqtgCc99YrR6694tKxQX/+qnVr45LLv9zz31/3jpUOICqx4vCF8eaLj4/zT1seI5OcMyw5aG4sOWhuHLdycaw984iIiHjwse3x1fUPxpeu3xj3Pdx7GVi7+siYN/eZQd/C+bPjpWcsj3/59gOV/DsgV/2ewHXx7D8iosgnva9hSkBETFsC+h0hwUzWvOiwuPxNL4pFC57p3utvfSy+sv7BuOWux+PxLTtjbGwsFi+aG8cceVCsOemw+KmzV8TC+bP3/PyWrTvjTe/6es/be/+vrYlVKxbv+fNtP94cv/an1w/03E8/4ZB47ztPj4iIx7fsiLe8+9qBHqfux6TbjP57V+wEoAmWAqjSeacui19/y8kxMjISO3bujj/6m+/Ht25+5IC/99jm0Xhs82jccNtj8Xdf+lH85n86JU5atbTv7b3gmCWxasXi2L17LGbNeuYz6sRjlsRxKxfHXfc/OfS/B0rgpG1qRV4EuK86LwicjELAII498qD45TeeFCPPzvx/9y9vnjT8J9q0ZUe8+y++Fw8+tr3vbb7y3GeO1U9cfXc8vWv33v//OY5h2snovz/FF4Aq+FYAdfvPrzsxFsx7ZpT/xe9ujOt/8GjPP/vU9qfjb/75h31tb+H82XH+6ctj59O746pr7o1vf3/v9i4884g91wVAW7jdb/9a8SlQdwszQmIYpxx/cJzyvIP3/PmzX7un78e49nsPx+jO3q/ev2D1EbFg3uz41s2PxJPbno5//c7eC/8OWjAnzj9ted/PAUpS9+d26Wf/ES0pABGWAsjXBWccsee/3/fw1oHW33fs3B1v+M2v9XwB4PiYfzz419/6WDz6xOje//1cxy/tYfQ/mNYUgCpYCqAOp594yJ7/fvs9W2rf3vFHLY7nP/c58cjjo3HD7ZsiImJsbCy++N2Ne/7OSauWxtFHHFT7c4G6Gf0PrlUFwFIAuVkwb3YcedjCPX8e9IY+/bj42bP7q697IMbG9n5L9urvPBD7/HHP34M2MfrvXasKQBUsBVClJYvn7vfnrdufrnV78+fOjgvOOCLGxp4pAPt64NFt8f27Ht/z57VnHhFz5/gIoFxNj/7bpnXv/iramaUAqnLQgv1vtdHPbXgH8dIzlseiBXPipjs3TfrVwav3uRjwOYvmxnmnLqv1+UBdUoz+23T2H9HCAhCRZilACWAyT23b/4x//KuAdRm/+G/i2f+4r9/4cGwb3XXA34eSpLhLa9vCP6KlBaAKM7VF1wPQi8ef3LHfnxctqO/mm8ceeVC84Ngl8dT2p+Pa7z086d8Z3bkrrrnhoT1/PuV5B8dRyxbV9pygCTN9Hhv9T661BaDupYDJmAIw0Y6du2Pjo9v2/Pm5y+sL2/Gv9l2z4aHYsXP3lH9v33sCRES88pwVtT0nqFqKdf82nv1HtPx3AQz7GwNnMtnvCvBbA5lo/a2PxateclRERJxw9HNq2ca8ObNi7ZlHRkTExT+xMi7+id4/JF921or42D/dtd/tgiFHRv/Vau0EoCqDLAWYBLCvr23YO3I/atmi/X47X6/e9Irj4qp1a+OqdWvjorOOPOB/P++0ZbF44WB9funiuXHuKYcP9LPQlEHC3+h/eq2eAERUMwW4at3aaX9tsN8ayHS+f9fjcf0PHo0zX3hYRET8zEuPjj/55L/1/PPz5s6KVzw7pt+6/em49qYD1/fHx/9/e/WP4q++MPPvDThu5eJ436+siWd/N1FcfO7K+PqND03/QwN67flHx9tf+/z46y/cFZ+8+u5atkH3NBH+bT77j+jIBMD1AKT2oc/eEU89ew+Al511ZJxx4qE9/+ybLz4+Dls6PyIi/u5LP47to/t/lfCoZYvi5OMOju07dsU/9Ph7Bu66/8n4zi17fxvhqc8/JFbsc8MiyIl1/3p0ogA0wVIA07nv4a3x+395c+zaPRYjIxG/9bZT4pyTpx+7j4yMxM+9/Nh43QVHR0TErT/eHJ/56oEBP372//lv3Bdbtu7s+TntezY+MhJ7pgyQkxTr/l3RmQLQxBRACWA6N9y+Kd7z4e/Flq07Y/7c2fE/3vbi+O23nxYXrj4ilh+6IObNnRXz5syKFYcvjJ86e0X88S+dGW+5+PiIiLj7gafid6+46YAL9ebMnhUvO/PI2LFz96TlYDq337Mlrv/BY3v+fNGaFTFndutPeihIqnX/Lpz9R0R04h+5ryq+FTDd9QARGivTW37Ignjbq58X5526LEZGpn8Ljo2NxRe+dX9c8f9+uN9thI9fuTje96trJv2ZP/nkv8UXr9s46f8WEXHQwjnxifeeP+12P/CZ2+Nz194bLzpuafzBL66e9u/2avwagF4e86FN2+Oy3/lmJdulTMK/fq2/CLAOM10UCNN5aNP2+IO/+n48d/mieMmLl8VpJxwSKw5fGEsPmhcjIxFbtj4d9zz4VNz8w8fjS9dvjIcmuaUvsD9X/PevM01nX6YAAPly9t+MzlwDsC/XAwDkSfg3p5MFIEIJAMiN8G9WZwtAVZQAgOG501/zOl0Aqmp9SgDA4FKGf1fP/iM6XgAimtv5SgDAgVJeMN3l8I9QACIiza2CARiMdf9qKAAVshQA0Dvr/mkpAM9yPQBAc6z7p6cA7EMJAKif8M+DAjCBEgBQH+GfDwWgRkoAwF7W/POiAEyiyZaoBABdkPr3ozj7P5ACMIWmlgIilACg3QYNf6P/eikA01ACAIYj/POlAMxACQAYjPDPmwLQAyUAoD/CP38KQMOUAKDtUoc/vVEAelRlm1QCgLbKIfyd/fdGAeiDEgAwNeFfFgWgT0oAwIGEf3m8WAO69opLx6p6rEsu//KMf2eq0G/yRhoAEw3z2ST80zIBGFAOk4AI0wAgHeFfNgVgCEoA0FXCv3wKwJCUAKBrhH87KAAVUAKArhD+7eEFrFDTFwZGpP8NW0B3DPN5I/zz40WsWC4lIEIRAKox7GeM8M+TJYCKNb0cEGFJAKiP8G8vL2ZNqpwERLhXANC8XNb7I4R/HUwAalL1weriQKBJwr/9vKg1y2kSEGEaAExv2M8P4V8OL2wDUpSACEsCQH9yWu+PEP51swTQgBTLARGWBIDeCf/u8QI3KLdJQIRpAHRdFZ8Pwr9MXuSGVV0CIiwJAIPJ7aw/Qvg3yRJAw+o4uC0JAP0S/nixE8lxEhBhGgBtl+PIP0L4p+AFTyhlCYiwJABdU8V7Xvi3hxc9sTpKQIRpALBXrmf9EcI/JdcAJFbXwT/sdQERrg2ANhD+TMWLn4nUk4AI0wBok6rez8K/veyAjNRVAiIsCUCX5HzWHyH8c2EnZMg0ABiEs3764RqADKW+LiDCtQFQGuFPv+yQjOWwJBBhGgA5yz34I4R/ruyUzJVQAiIUAWhale9J4d9NdkwB6iwBEaYBUJoSzvojhH/u7JyCmAZAtznrp0p2UmFKmQZEKAJQlVKCP0L4l8SOKlBOJSBCEYC6VP3eEv7sy84qWE5FQAmAajnrp252WuFyKgERigAMy1k/TbHjWqDuEhChCEDdSgv+COFfOjuvRXKbBkQoAjCTOt4jzvrphZ3YMjlOAyIUAZioxOCPEP5tYke2UBMlIEIRgEGUGvwRwr9t7MwWK7kIRCgDtEddx7vgZxh2asvlXAIiFAHarc7jW/gzLDu2IxQBaI7gpwR2cIc0VQIi6i0CEcoA+an72G0q+COEf1fYyR2kCEB1BD+lsrM7qskSEFF/EYhQBmhOE8dlk8EfIfy7yA7vuFKKQISpAOk1cQwKfppix9N4CYhopghEKAMMr6njrengjxD+XWfns0ebi0CEMkDvmjy2BD+pOAg4QGlFIEIZYHhNH0OCn9QcDEwqRQmIGL4IRCgD9C7FsZIi+COEPwdyQDCtVEUgovmpQIQy0AUpjotUoR8h+JmaA4OelFwEIgb70I9QCNog5b4X/OTMAULPUpaAcSnLQIRCUILU+zdl6I8T/vTCQULf2lIExqUODIaTy/4T/JTGwcLAcigCEfmUgXFKQX1y2z85hH6E4GcwDhqG1sYiMK6KwIlQCgaR82sv+GkDBw+VyaUIRORdBvalGJTzuuYS+hGCn2o4iKhcTkUgop4yMK6O8BrXpnJQ6uuUU+hHCH6q5WCiNrkVgYh6y0BEvUE3nRRloa3/1txCP0LwUw8HFbXLsQiMq7sQRKQLyjZootjkGPjjBD91cnDRmJyLQEQzZWBfisFeTU8wcg79CMFPMxxkNC73IjCu6UIwUZsKQurrGXIP/HGCnyY52EimlCIwLnUhmE6KspA61KdTSuCPE/yk4KAjC6WVgYi8C0HXlBb4EUKf9ByAZKXEIrAvpaB+JYb9vgQ/uXAgkq3Sy8A4pWBwpYf9OKFPjhyUZK8tRWAixWCvtgT9RIKfnDk4KUpby8BEbSwHbQ35iYQ+pXCgUqSuFIFepCwLXQn1Xgh+SuOApXjKAKkIfUrm4KVVlAHqJvRpCwcyraUMUBWhTxs5qOkEZYB+CX3azgFOJykETCTw6RoHPJ2nDHSX0KfLHPwwgULQXgIf9vJmgBkoBOUS+DA1bw7ok0KQL4EPvfNmgQooBc0T9jAcbyCokWIwPEEP9fDGggQUgwMJemiWNxxkqI0FQcBDXrwhoXApy4JQBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoMX+P072eS3zvnCTAAAAAElFTkSuQmCC" sizes="512x512" type="image/png">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts Litúrgicas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            cinzel: ['Cinzel', 'serif'],
-            serif: ['Playfair Display', 'serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-          },
-          colors: {
-            liturgia: {
-              crema: '#FAF7F2',
-              pergamino: '#F3EDE2',
-              dorado: '#C5A059',
-              doradoOscuro: '#9E7A32',
-              pizarra: '#1C1F26',
-              carbon: '#121418',
-              tinta: '#2C2A29'
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    body { background-color: #FAF7F2; color: #2C2A29; }
-    .tab-active { border-bottom: 2px solid #C5A059; color: #9E7A32; font-weight: 600; }
+    /* RESET Y VARIABLES */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-crema: #FAF7F2;
+      --bg-pergamino: #F3EDE2;
+      --dorado: #C5A059;
+      --dorado-oscuro: #9E7A32;
+      --carbon: #121418;
+      --pizarra: #1C1F26;
+      --tinta: #2C2A29;
+      --borde: #E5E7EB;
+    }
+
+    body {
+      background-color: var(--bg-crema);
+      color: var(--tinta);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* CABECERA SOLEMNE Y CENTRADA */
+    header {
+      background-color: var(--carbon);
+      color: #FAF7F2;
+      padding: 32px 16px 28px 16px;
+      border-bottom: 2px solid var(--dorado);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      text-align: center;
+    }
+
+    .header-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .frase-gratitud-sup {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--dorado);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    .catedral-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #D1D5DB;
+      text-transform: uppercase;
+    }
+
+    .titulo-principal {
+      font-family: 'Cinzel', serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin: 2px 0;
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    @media (min-width: 640px) {
+      .titulo-principal { font-size: 40px; letter-spacing: 4px; }
+    }
+
+    .cita-francisco {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: #D1D5DB;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .cita-sfa-tag {
+      font-family: 'Cinzel', serif;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--dorado);
+      font-size: 12px;
+      margin-left: 4px;
+    }
+
+    /* RELOJ CENTRADO */
+    .clock-box {
+      background-color: var(--pizarra);
+      border: 1px solid #374151;
+      border-radius: 12px;
+      padding: 12px 24px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+      min-width: 220px;
+    }
+
+    #live-time {
+      font-family: monospace;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--dorado);
+      letter-spacing: 1px;
+    }
+
+    #live-date {
+      font-size: 13px;
+      color: #D1D5DB;
+      margin-top: 2px;
+      text-transform: capitalize;
+    }
+
+    #liturgical-badge {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background-color: #064E3B;
+      color: #A7F3D0;
+      border: 1px solid #047857;
+    }
+
+    /* BARRA DE NAVEGACIÓN */
+    nav {
+      background-color: #FFFFFF;
+      border-bottom: 1px solid var(--borde);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .nav-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 8px;
+      overflow-x: auto;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      padding: 14px 12px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6B7280;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    .nav-btn:hover { color: var(--carbon); }
+    .nav-btn.active {
+      color: var(--dorado-oscuro);
+      border-bottom-color: var(--dorado);
+      font-weight: 700;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    main {
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 16px;
+      flex-grow: 1;
+    }
+
+    .section-view { display: block; }
+    .section-view.hidden { display: none !important; }
+
+    /* TARJETAS BLANCAS Y PERGAMINO */
+    .card {
+      background-color: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid #E5E7EB;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .card-pergamino {
+      background-color: var(--bg-pergamino);
+      border: 1px solid #E2D7C3;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--dorado-oscuro);
+    }
+
+    .card-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--carbon);
+      margin: 8px 0 10px 0;
+    }
+
+    .card-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #4B5563;
+      line-height: 1.6;
+    }
+
+    /* BOTONES */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #F3F4F6;
+      color: #374151;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-action:hover {
+      background-color: #FEF3C7;
+      color: var(--dorado-oscuro);
+      border-color: var(--dorado);
+    }
+
+    .btn-dark {
+      background-color: var(--carbon);
+      color: var(--dorado);
+      border: 1px solid var(--dorado);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-dark:hover { background-color: #000000; color: #FFFFFF; }
+
+    /* FORMULARIOS Y CONTROLES */
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #4B5563;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 14px;
+      background-color: #FFFFFF;
+      color: var(--tinta);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input[type="text"]:focus, select:focus, textarea:focus {
+      border-color: var(--dorado);
+      box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: #F3F4F6;
+      border-top: 1px solid #E5E7EB;
+      padding: 18px 16px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: #6B7280;
+    }
   </style>
 </head>
-<body class="min-h-screen font-sans flex flex-col justify-between antialiased selection:bg-amber-100 selection:text-amber-900">
+<body>
 
-  <!-- CABECERA SOLEMNE, LIMPIA Y SIN RUIDO VISUAL -->
-  <header class="bg-liturgia-carbon text-liturgia-crema pt-6 pb-5 px-4 shadow-md border-b-2 border-liturgia-dorado">
-    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-5 text-center md:text-left">
+  <!-- CABECERA SOLEMNE, ELEGANTE Y CENTRADA -->
+  <header>
+    <div class="header-container">
       
-      <!-- Bloque de Títulos y Dedicatorias -->
-      <div class="flex-1">
-        <!-- 1. TÍTULO PRINCIPAL QUE SOBRESALE -->
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-cinzel tracking-widest font-bold text-white uppercase">
-          JH - AGENDA PERSONAL
-        </h1>
-        
-        <!-- 2. CATEDRAL TAMAÑO MEDIO -->
-        <p class="text-xs sm:text-sm font-cinzel text-liturgia-dorado tracking-wider uppercase mt-1">
-          Catedral Metropolitana de San Pedro Apóstol · Cali
-        </p>
-
-        <!-- 3. FRASES PERSONALES DISCRETAS (PEQUEÑAS, DEL MISMO TAMAÑO Y CON AIRE) -->
-        <div class="mt-3 pt-2.5 border-t border-stone-800 flex flex-col gap-1 text-[11px] sm:text-xs font-serif text-stone-300 italic">
-          <p>«Con sincera gratitud y aprecio fraternal»</p>
-          <p>«Yo necesito pocas cosas y lo poco que necesito lo necesito poco» <span class="font-sans text-[10px] font-semibold text-liturgia-dorado not-italic">(SFA)</span></p>
-        </div>
+      <!-- Frase Superior de Agradecimiento -->
+      <div class="frase-gratitud-sup">
+        Con sincera gratitud y aprecio fraternal
       </div>
 
-      <!-- Reloj y Calendario en Vivo (Discreto y Elegante) -->
-      <div class="bg-liturgia-pizarra border border-stone-700/80 rounded-lg p-3 text-center md:text-right min-w-[200px] shadow-inner">
-        <div id="live-time" class="text-xl font-mono text-liturgia-dorado font-bold">--:--:--</div>
-        <div id="live-date" class="text-xs text-stone-300 capitalize font-medium mt-0.5">Cargando fecha...</div>
-        <div id="liturgical-badge" class="mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
-          Tiempo Litúrgico
-        </div>
+      <!-- Catedral Metropolitana de Cali -->
+      <div class="catedral-sub">
+        Catedral Metropolitana de San Pedro Apóstol · Cali
+      </div>
+
+      <!-- TÍTULO PRINCIPAL QUE SOBRESALE -->
+      <h1 class="titulo-principal">
+        JH - AGENDA PERSONAL
+      </h1>
+
+      <!-- Cita de San Francisco de Asís (WhatsApp de JH) -->
+      <p class="cita-francisco">
+        «Yo necesito pocas cosas y lo poco que necesito lo necesito poco» <span class="cita-sfa-tag">(SFA)</span>
+      </p>
+
+      <!-- Reloj Litúrgico en Vivo -->
+      <div class="clock-box">
+        <div id="live-time">--:--:--</div>
+        <div id="live-date">Cargando fecha...</div>
+        <div id="liturgical-badge">Tiempo Litúrgico</div>
       </div>
 
     </div>
   </header>
 
   <!-- NAVEGACIÓN PRINCIPAL -->
-  <nav class="bg-white border-b border-stone-200 sticky top-0 z-30 shadow-sm">
-    <div class="max-w-4xl mx-auto flex justify-around sm:justify-start sm:gap-8 px-4 text-xs sm:text-sm font-cinzel">
-      <button onclick="cambiarPestana('santo')" id="tab-santo" class="py-3 px-2 tab-active transition-all">El Santo & Pensamiento</button>
-      <button onclick="cambiarPestana('grafico')" id="tab-grafico" class="py-3 px-2 text-stone-500 hover:text-stone-900 transition-all">Taller Gráfico</button>
-      <button onclick="cambiarPestana('redactor')" id="tab-redactor" class="py-3 px-2 text-stone-500 hover:text-stone-900 transition-all">Consejero Pastoral</button>
-      <button onclick="cambiarPestana('notas')" id="tab-notas" class="py-3 px-2 text-stone-500 hover:text-stone-900 transition-all">Cuaderno de Notas</button>
+  <nav>
+    <div class="nav-container">
+      <button onclick="cambiarPestana('santo')" id="tab-santo" class="nav-btn active">El Santo & Pensamiento</button>
+      <button onclick="cambiarPestana('grafico')" id="tab-grafico" class="nav-btn">Taller Gráfico</button>
+      <button onclick="cambiarPestana('redactor')" id="tab-redactor" class="nav-btn">Consejero Pastoral</button>
+      <button onclick="cambiarPestana('notas')" id="tab-notas" class="nav-btn">Cuaderno de Notas</button>
     </div>
   </nav>
 
   <!-- CONTENIDO CENTRAL -->
-  <main class="max-w-4xl mx-auto w-full p-4 sm:p-6 flex-grow">
+  <main>
 
-    <!-- SECCIÓN 1: EL SANTO & PENSAMIENTO DE GRATITUD -->
-    <section id="sec-santo" class="space-y-6">
+    <!-- 1. SECCIÓN: EL SANTO & PENSAMIENTO DE GRATITUD -->
+    <section id="sec-santo" class="section-view">
       
-      <!-- Tarjeta del Santo del Día con Enlace Directo a Google -->
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-50 rounded-full blur-2xl pointer-events-none"></div>
-        
-        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-          <span class="text-xs font-cinzel font-bold text-liturgia-doradoOscuro uppercase tracking-wider">Conmemoración Litúrgica</span>
-          <!-- Acceso Directo Oficial a Google -->
-          <a id="btn-google-santo" href="https://www.google.com/search?q=santo+del+dia+hoy+liturgia+catolica" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 hover:bg-amber-50 text-stone-700 hover:text-liturgia-doradoOscuro border border-stone-300 rounded text-xs font-medium transition shadow-sm w-fit">
+      <!-- Tarjeta del Santo del Día -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <span class="card-title">Conmemoración Litúrgica del Día</span>
+          <!-- Botón de Consulta a Google -->
+          <a id="btn-google-santo" href="https://www.google.com/search?q=santo+del+dia+hoy+liturgia+catolica" target="_blank" rel="noopener noreferrer" class="btn-action">
             <span>🔍</span> Consultar Santos de Hoy en Google ↗
           </a>
         </div>
 
-        <h2 id="santo-nombre" class="text-2xl sm:text-3xl font-serif font-bold text-stone-900 mt-3">San Pedro Apóstol</h2>
-        <p id="santo-cita" class="text-stone-600 font-serif italic mt-2 text-sm sm:text-base leading-relaxed">
-          «Tú eres el Cristo, el Hijo de Dios vivo.» (Mt 16, 16)
+        <h2 id="santo-nombre" class="card-heading">Cargando santo...</h2>
+        <p id="santo-cita" class="card-quote">
+          "La gracia se perfecciona en la fidelidad del servicio cotidiano."
         </p>
         
-        <div class="mt-4 pt-4 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500">
-          <span id="santo-celebracion">Patrono Principal de la Catedral</span>
-          <div class="flex gap-4">
-            <button onclick="alternarEditorSanto()" class="text-liturgia-doradoOscuro hover:underline font-medium">Editar Santo / Cita ✎</button>
-            <button onclick="cargarSantoAleatorio()" class="text-stone-600 hover:text-stone-900 font-medium">Ver otra conmemoración ⟳</button>
+        <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid #F3F4F6; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 13px; color: #6B7280;">
+          <span id="santo-celebracion">Fiesta de la Iglesia</span>
+          <div style="display: flex; gap: 10px;">
+            <button onclick="mostrarEditorSanto()" class="btn-action">Personalizar Santo ✎</button>
+            <button onclick="cargarSantoAleatorio()" class="btn-action">Ver otra conmemoración ⟳</button>
           </div>
         </div>
 
         <!-- Editor Rápido del Santo (Desplegable) -->
-        <div id="editor-santo" class="hidden mt-4 pt-4 border-t border-dashed border-stone-200 bg-amber-50/40 p-4 rounded-lg text-xs space-y-3">
-          <div class="font-cinzel font-bold text-stone-800">Actualizar Santo de Hoy (según consulta de Google):</div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div id="editor-santo-box" style="display: none; margin-top: 16px; padding: 16px; background-color: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px;">
+          <div style="font-size: 12px; font-weight: 700; color: #374151; margin-bottom: 10px; text-transform: uppercase;">
+            Actualizar datos del Santo de Hoy (según consulta de Google):
+          </div>
+          <div class="grid-2">
             <div>
-              <label class="block font-semibold mb-1 text-stone-600">Nombre del Santo:</label>
-              <input type="text" id="input-edit-santo" placeholder="Ej. San Antonio de Padua" class="w-full p-2 border border-stone-300 rounded bg-white">
+              <label>Nombre del Santo:</label>
+              <input type="text" id="edit-santo-nombre" placeholder="Ej. San Antonio de Padua">
             </div>
             <div>
-              <label class="block font-semibold mb-1 text-stone-600">Celebración / Rango:</label>
-              <input type="text" id="input-edit-tipo" placeholder="Ej. Memoria Obligatoria" class="w-full p-2 border border-stone-300 rounded bg-white">
+              <label>Celebración / Rango:</label>
+              <input type="text" id="edit-santo-celebracion" placeholder="Ej. Memoria Obligatoria">
             </div>
           </div>
-          <div>
-            <label class="block font-semibold mb-1 text-stone-600">Cita o Reseña breve:</label>
-            <input type="text" id="input-edit-cita" placeholder="«Cita del santo o versículo bíblico»" class="w-full p-2 border border-stone-300 rounded bg-white">
+          <div style="margin-top: 10px;">
+            <label>Cita Bíblica o Reseña:</label>
+            <input type="text" id="edit-santo-cita" placeholder="Ej. «El Señor es mi pastor, nada me falta»">
           </div>
-          <div class="flex justify-end gap-2">
-            <button onclick="alternarEditorSanto()" class="px-3 py-1.5 border border-stone-300 rounded text-stone-600 hover:bg-stone-100">Cancelar</button>
-            <button onclick="guardarSantoPersonalizado()" class="px-4 py-1.5 bg-liturgia-carbon text-liturgia-dorado font-cinzel rounded font-bold hover:bg-black">Guardar Santo</button>
+          <div style="margin-top: 12px; display: flex; gap: 8px;">
+            <button onclick="guardarSantoPersonalizado()" class="btn-dark" style="padding: 8px 16px; font-size: 12px;">Guardar y Aplicar</button>
+            <button onclick="ocultarEditorSanto()" class="btn-action">Cancelar</button>
           </div>
         </div>
+
       </div>
 
-      <!-- Tarjeta: Pensamiento Fraterno para JH (Gratitud 365) -->
-      <div class="bg-liturgia-pergamino border border-amber-200/80 rounded-xl p-6 relative shadow-sm">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-lg">🕯️</span>
-          <h3 class="text-xs font-cinzel font-bold uppercase tracking-widest text-liturgia-doradoOscuro">Una Palabra de Aprecio Fraternal · Para JH</h3>
+      <!-- Tarjeta: Pensamiento Fraterno para JH (Gratitud 365 días) -->
+      <div class="card-pergamino">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <span style="font-size: 18px;">🕯️</span>
+          <span class="card-title">Una Palabra de Aprecio Fraternal · Para JH</span>
         </div>
-        <p id="frase-fraterna" class="text-stone-800 font-serif text-base sm:text-lg italic leading-relaxed">
+        <p id="frase-fraterna" class="card-quote" style="color: #1F2937; font-size: 18px;">
           "Hay amistades que no necesitan de la prisa ni de la presencia diaria; se sostienen en la certeza de la lealtad y el respeto mutuo a través de los años."
         </p>
-        <div class="mt-4 flex justify-between items-center text-xs text-stone-500">
-          <span>Reflexión del día (1 de 365)</span>
-          <button onclick="cambiarFraseGratitud()" class="px-3 py-1 bg-white border border-stone-300 rounded shadow-sm text-stone-700 hover:bg-stone-50 transition">
+        <div style="margin-top: 18px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #6B7280;">
+          <span id="num-frase-dia">Reflexión diaria para JH</span>
+          <button onclick="cambiarFraseGratitud()" class="btn-action" style="background-color: #FFFFFF;">
             Leer otra reflexión ➔
           </button>
         </div>
@@ -168,38 +458,35 @@
 
     </section>
 
-    <!-- SECCIÓN 2: TALLER GRÁFICO (CREADOR DE INFOGRAFÍAS Y ESTADOS) -->
-    <section id="sec-grafico" class="hidden space-y-6">
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
-        <h2 class="text-xl font-cinzel font-bold text-stone-900">Taller de Publicación & Estados</h2>
-        <p class="text-xs text-stone-500 font-serif mt-1">Genera imágenes litúrgicas limpias y sobrias para compartir en WhatsApp, Facebook o YouTube.</p>
+    <!-- 2. SECCIÓN: TALLER GRÁFICO (GENERADOR DE ESTADOS E INFOGRAFÍAS) -->
+    <section id="sec-grafico" class="section-view hidden">
+      <div class="card">
+        <h2 style="font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--carbon);">Taller de Publicación & Estados</h2>
+        <p style="font-size: 13px; color: #6B7280; font-family: 'Playfair Display', serif; margin-top: 4px;">
+          Genera imágenes litúrgicas sobrias y elegantes listas para compartir en WhatsApp, Facebook o YouTube.
+        </p>
 
         <!-- Controles -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-xs">
-          <!-- Selector de Tamaño -->
+        <div class="grid-3" style="margin-top: 20px;">
           <div>
-            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Formato / Tamaño:</label>
-            <select id="canvas-size" onchange="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded bg-white">
+            <label>Formato / Tamaño:</label>
+            <select id="canvas-size" onchange="actualizarCanvas()">
               <option value="9_16">Estado WhatsApp / Stories (9:16)</option>
               <option value="4_3">Post Facebook / Cuadrante (4:3)</option>
               <option value="16_9">Portada YouTube / Facebook (16:9)</option>
             </select>
           </div>
-
-          <!-- Selector de Estilo Visual -->
           <div>
-            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Estilo de Arte:</label>
-            <select id="canvas-style" onchange="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded bg-white">
+            <label>Estilo de Arte:</label>
+            <select id="canvas-style" onchange="actualizarCanvas()">
               <option value="dore">Grabado Gustave Doré (Tinta y Pergamino)</option>
               <option value="catedral">Mármol Catedral (Pizarra & Dorado)</option>
               <option value="minimal">Clásico Sacro (Limpio y Blanco)</option>
             </select>
           </div>
-
-          <!-- Tipo de Contenido -->
           <div>
-            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Disposición:</label>
-            <select id="canvas-layout" onchange="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded bg-white">
+            <label>Disposición:</label>
+            <select id="canvas-layout" onchange="actualizarCanvas()">
               <option value="completa">Infografía Completa (Título + Cita)</option>
               <option value="solotexto">Solo Reflexión / Versículo</option>
               <option value="solemne">Anuncio Solemne / Misa</option>
@@ -207,419 +494,74 @@
           </div>
         </div>
 
-        <!-- Campos de Texto Editables -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-xs">
+        <div class="grid-2" style="margin-top: 14px;">
           <div>
-            <label class="block font-semibold mb-1 text-stone-700">Título / Santo:</label>
-            <input type="text" id="canvas-title-input" value="San Pedro Apóstol" oninput="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded">
+            <label>Título / Santo:</label>
+            <input type="text" id="canvas-title-input" value="San Pedro Apóstol" oninput="actualizarCanvas()">
           </div>
           <div>
-            <label class="block font-semibold mb-1 text-stone-700">Subtítulo / Fecha:</label>
-            <input type="text" id="canvas-date-input" value="Catedral Metropolitana de Cali" oninput="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded">
+            <label>Subtítulo / Origen:</label>
+            <input type="text" id="canvas-date-input" value="Catedral Metropolitana de Cali" oninput="actualizarCanvas()">
           </div>
-          <div class="sm:col-span-2">
-            <label class="block font-semibold mb-1 text-stone-700">Cita Bíblica o Mensaje:</label>
-            <textarea id="canvas-quote-input" rows="2" oninput="actualizarCanvas()" class="w-full p-2 border border-stone-300 rounded">"Tú eres Pedro, y sobre esta piedra edificaré mi Iglesia." (Mt 16, 18)</textarea>
+          <div style="grid-column: 1 / -1;">
+            <label>Cita Bíblica o Mensaje:</label>
+            <textarea id="canvas-quote-input" rows="2" oninput="actualizarCanvas()">"Tú eres Pedro, y sobre esta piedra edificaré mi Iglesia." (Mt 16, 18)</textarea>
           </div>
         </div>
 
         <!-- Vista Previa del Lienzo -->
-        <div class="mt-6 flex flex-col items-center">
-          <div class="border-4 border-stone-800 shadow-xl rounded overflow-hidden max-w-full bg-stone-900">
-            <canvas id="sacroCanvas" width="540" height="960" class="max-h-[480px] w-auto block"></canvas>
+        <div style="margin-top: 24px; display: flex; flex-direction: column; align-items: center;">
+          <div style="border: 3px solid #1F2937; box-shadow: 0 10px 25px rgba(0,0,0,0.25); border-radius: 6px; overflow: hidden; max-width: 100%; background: #000;">
+            <canvas id="sacroCanvas" width="540" height="960" style="max-height: 480px; width: auto; display: block;"></canvas>
           </div>
-          <div class="mt-4 flex flex-wrap justify-center gap-3">
-            <button onclick="descargarImagen()" class="px-5 py-2.5 bg-liturgia-carbon text-liturgia-dorado font-cinzel text-xs font-bold rounded shadow hover:bg-black transition flex items-center gap-2 border border-liturgia-dorado">
-              <span>⬇</span> Descargar Imagen PNG
-            </button>
-            <button onclick="ponerDatosDelDia()" class="px-4 py-2.5 bg-stone-100 text-stone-700 font-cinzel text-xs rounded hover:bg-stone-200 transition">
-              Sincronizar Santo de Hoy
-            </button>
+          <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+            <button onclick="descargarImagen()" class="btn-dark">⬇ Descargar Imagen PNG</button>
+            <button onclick="sincronizarConSantoActual()" class="btn-action">Sincronizar Santo de Hoy</button>
           </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SECCIÓN: CONSEJERO DE REDACCIÓN PASTORAL -->
+    <section id="sec-redactor" class="section-view hidden">
+      <div class="card">
+        <h2 style="font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--carbon);">Consejero de Redacción Pastoral</h2>
+        <p style="font-size: 13px; color: #6B7280; font-family: 'Playfair Display', serif; margin-top: 4px;">
+          Estructurador ágil de cartas, homilías y mensajes pastorales con el tono adecuado.
+        </p>
+
+        <!-- Botones de plantilla -->
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;">
+          <button onclick="seleccionarPlantilla('pastoral')" class="btn-action">Cercano & Pastoral</button>
+          <button onclick="seleccionarPlantilla('solemne')" class="btn-action">Solemne / Curia</button>
+          <button onclick="seleccionarPlantilla('homilia')" class="btn-action">Guion de Homilía</button>
+          <button onclick="seleccionarPlantilla('fraterno')" class="btn-action">Felicitación / Amistad</button>
+        </div>
+
+        <div style="margin-top: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label style="margin: 0;">Borrador del Documento:</label>
+            <button onclick="copiarTextoRedactado()" id="btn-copiar" class="btn-action" style="padding: 4px 10px; font-size: 11px;">Copiar Texto 📋</button>
+          </div>
+          <textarea id="texto-pastoral" rows="10" style="background-color: #FAFAFA; font-family: 'Playfair Display', serif; line-height: 1.6;"></textarea>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 3: CONSEJERO DE REDACCIÓN PASTORAL -->
-    <section id="sec-redactor" class="hidden space-y-6">
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
-        <h2 class="text-xl font-cinzel font-bold text-stone-900">Consejero de Redacción Pastoral</h2>
-        <p class="text-xs text-stone-500 font-serif mt-1">Estructurador ágil de cartas, homilías y mensajes con el tono adecuado.</p>
-
-        <!-- Selector de Tono -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-xs font-cinzel">
-          <button onclick="seleccionarPlantilla('pastoral')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Cercano & Pastoral</button>
-          <button onclick="seleccionarPlantilla('solemne')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Solemne / Curia</button>
-          <button onclick="seleccionarPlantilla('homilia')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Guion de Homilía</button>
-          <button onclick="seleccionarPlantilla('fraterno')" class="p-2 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Felicitación / Amistad</button>
-        </div>
-
-        <!-- Área de Edición -->
-        <div class="mt-4">
-          <div class="flex justify-between items-center mb-1">
-            <label class="text-xs font-semibold text-stone-700 uppercase tracking-wider" id="label-redactor">Borrador del Documento:</label>
-            <button onclick="copiarTextoRedactado()" id="btn-copiar" class="text-xs text-liturgia-doradoOscuro hover:underline font-bold">Copiar Texto 📋</button>
-          </div>
-          <textarea id="texto-pastoral" rows="10" class="w-full p-4 border border-stone-300 rounded font-serif text-stone-800 text-sm leading-relaxed focus:outline-none focus:ring-1 focus:ring-amber-500 bg-stone-50"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: CUADERNO DE APUNTES & INTENCIONES -->
-    <section id="sec-notas" class="hidden space-y-6">
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
-        <div class="flex justify-between items-center">
+    <!-- 4. SECCIÓN: CUADERNO DE APUNTES & INTENCIONES -->
+    <section id="sec-notas" class="section-view hidden">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
           <div>
-            <h2 class="text-xl font-cinzel font-bold text-stone-900">Cuaderno de Homilías & Apuntes</h2>
-            <p class="text-xs text-stone-500 font-serif">Las notas se guardan automáticamente en la memoria de este dispositivo.</p>
+            <h2 style="font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: var(--carbon);">Cuaderno de Homilías & Apuntes</h2>
+            <p style="font-size: 13px; color: #6B7280; font-family: 'Playfair Display', serif; margin-top: 2px;">
+              Las notas se guardan automáticamente en la memoria de este teléfono o computador.
+            </p>
           </div>
-          <span id="status-guardado" class="text-[10px] text-emerald-600 font-mono font-semibold">Guardado ✓</span>
+          <span id="status-guardado" style="font-size: 12px; color: #059669; font-weight: 700; font-family: monospace;">Guardado ✓</span>
         </div>
 
-        <textarea id="cuaderno-notas" oninput="guardarNotas()" rows="12" placeholder="Escriba aquí ideas para sermones, intenciones especiales de misa de la Catedral o recordatorios..." class="w-full mt-4 p-4 border border-stone-300 rounded font-serif text-stone-900 text-sm leading-relaxed bg-amber-50/20 focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
-        
-        <div class="mt-3 flex justify-between items-center text-xs">
-          <button onclick="limpiarNotas()" class="text-rose-700 hover:underline">Borrar notas</button>
-          <button onclick="descargarNotasTxt()" class="text-stone-700 hover:underline font-semibold">Descargar como texto (.txt) ↓</button>
-        </div>
-      </div>
-    </section>
+        <textarea id="cuaderno-notas" oninput="guardarNotas()" rows="12" placeholder="Escriba aquí ideas para sermones, intenciones especiales de misa de la Catedral o recordatorios..." style="margin-top: 16px; background-color: #FFFDF9; font-family: 'Playfair Display', serif; line-height: 1.6;"></textarea>
 
-  </main>
-
-  <!-- PIE DE PÁGINA SUTIL -->
-  <footer class="bg-stone-100 border-t border-stone-200 py-4 px-4 text-center text-xs text-stone-500 font-serif flex items-center justify-center gap-2">
-    <span>JH - Agenda Personal · Catedral de San Pedro Apóstol · Cali</span>
-  </footer>
-
-  <!-- LÓGICA JAVASCRIPT INTEGRADA -->
-  <script>
-    // BANCO DE FRASES DE GRATITUD (365 DÍAS MOTOR)
-    const frasesGratitud = [
-      "Hay amistades que no necesitan de la prisa ni de la presencia diaria; se sostienen en la certeza de la lealtad y el respeto mutuo a través de los años.",
-      "Agradezco sinceramente a Dios por tu vida, tu vocación y por haber sido providencia serena en los momentos más difíciles de mi camino.",
-      "La verdadera generosidad no hace ruido ni busca reconocimiento; simplemente extiende la mano con nobleza, tal como lo hiciste conmigo.",
-      "Más de dos décadas de amistad me han enseñado que los lazos sinceros resisten el tiempo, la distancia y los silencios.",
-      "Tu respaldo en mis proyectos fue mucho más que un apoyo económico: fue un voto de confianza que jamás olvidaré.",
-      "En medio de las responsabilidades del altar y la Catedral, guardo siempre un lugar de oración y gratitud por tu ministerio y tu persona.",
-      "Un amigo leal es un refugio silencioso; gracias por ser ese punto de apoyo sereno en mi historia.",
-      "Acompañarte desde el día de tu ordenación sacerdotal ha sido un honor que el tiempo solo ha hecho más valioso.",
-      "Que la paz y la gracia que procuras a tantos fieles en San Pedro Apóstol retornen colmadas a tu propio espíritu.",
-      "Dicen que la gratitud es la memoria del corazón; el mío no olvida a quien me tendió la mano cuando comenzaba a caminar cuesta arriba.",
-      "Tu testimonio sacerdotal se distingue por la sobriedad, la templanza y el don de servir sin buscar aplausos humanos.",
-      "En un mundo lleno de estruendo y prisa, tu serenidad siempre ha sido una lección viva de fe.",
-      "Agradezco a la vida haber cruzado nuestros caminos en el Tolima y verte florecer como pastor en esta amada tierra caleña.",
-      "Que el Señor bendiga cada palabra que pronuncias en el púlpito y cada bendición que impartes en la Catedral.",
-      "Tener un amigo sacerdote como tú es un recordatorio constante de que la generosidad de Dios se manifiesta en personas reales.",
-      "Gracias por creer en mí y en mis sueños, incluso antes de que dieran frutos visibles.",
-      "La verdadera caridad no calcula; simplemente comprende, acoge y bendice. Gracias por ese testimonio.",
-      "En cada logro y avance de mi trabajo, hay una semilla de tu fe y de tu desinteresado apoyo.",
-      "Que el Santo de este día interceda especialmente por tus intenciones más íntimas y cuide tu salud y serenidad.",
-      "Los años pasan, pero la gratitud sincera y el respeto mutuo permanecen intactos como el primer día.",
-      "Hay deudas que nunca se pagan con dinero, sino con aprecio constante, lealtad y bendición diaria.",
-      "Gracias, JH, por tu hombría de bien, tu calidez humana y tu sabiduría pastoral a lo largo de estos 23 años.",
-      "Que la luz de la Palabra ilumine siempre tus homilías y reconforte tu corazón en los días de mayor fatiga.",
-      "Pocas personas saben estar presentes desde la distancia con tanta nobleza y desprendimiento como tú.",
-      "Esta herramienta no busca más que recordarte, día a día, que en algún lugar un viejo amigo agradece a Dios por haberte conocido."
-    ];
-
-    // SANTORAL BASE
-    const santoralColeccion = [
-      { santo: "San Pedro Apóstol", cita: "«Tú eres el Cristo, el Hijo de Dios vivo.» (Mt 16, 16)", tipo: "Patrono Principal de la Catedral" },
-      { santo: "San Juan María Vianney (Santo Cura de Ars)", cita: "«El sacerdocio es el amor del corazón de Jesús.»", tipo: "Patrono de los Párrocos" },
-      { santo: "San Juan Pablo II", cita: "«¡No tengáis miedo! Abrid de par en par las puertas a Cristo.»", tipo: "Memoria Libre" },
-      { santo: "San Francisco de Asís", cita: "«Yo necesito pocas cosas y lo poco que necesito lo necesito poco.»", tipo: "Memoria Obligatoria" },
-      { santo: "San Agustín de Hipona", cita: "«Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.»", tipo: "Doctor de la Iglesia" },
-      { santo: "Santa Teresa de Jesús", cita: "«Nada te turbe, nada te espante; todo se pasa, Dios no se muda.»", tipo: "Doctora de la Iglesia" },
-      { santo: "San José, Esposo de la Virgen", cita: "«Hombre justo, custodio fiel del Redentor y modelo de silencio fecundo.»", tipo: "Solemnidad" },
-      { santo: "San Ignacio de Loyola", cita: "«En todo amar y servir a la mayor gloria de Dios.»", tipo: "Memoria" }
-    ];
-
-    // INICIALIZACIÓN
-    window.addEventListener('DOMContentLoaded', () => {
-      iniciarReloj();
-      cargarSanto();
-      cargarFraseDelDia();
-      cargarNotasGuardadas();
-      actualizarCanvas();
-    });
-
-    // RELOJ LITÚRGICO
-    function iniciarReloj() {
-      function actualizar() {
-        const ahora = new Date();
-        document.getElementById('live-time').innerText = ahora.toLocaleTimeString('es-CO');
-        const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const fechaTexto = ahora.toLocaleDateString('es-CO', opciones);
-        document.getElementById('live-date').innerText = fechaTexto;
-
-        // Actualizar link de Google con la fecha de hoy
-        const queryGoogle = encodeURIComponent(`santo del dia hoy ${ahora.getDate()} de ${ahora.toLocaleDateString('es-CO', { month: 'long' })} liturgia catolica`);
-        document.getElementById('btn-google-santo').href = `https://www.google.com/search?q=${queryGoogle}`;
-
-        // Color Litúrgico según mes aproximado
-        const mes = ahora.getMonth();
-        const badge = document.getElementById('liturgical-badge');
-        if (mes === 11 || mes === 2) {
-          badge.className = "mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-purple-950 text-purple-200 border border-purple-800";
-          badge.innerText = "Tiempo Penitencial / Morado";
-        } else if (mes === 3 || mes === 4) {
-          badge.className = "mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-400";
-          badge.innerText = "Tiempo de Fiesta / Blanco";
-        } else {
-          badge.className = "mt-1 inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800";
-          badge.innerText = "Tiempo Ordinario / Verde";
-        }
-      }
-      actualizar();
-      setInterval(actualizar, 1000);
-    }
-
-    // PESTAÑAS
-    function cambiarPestana(pestana) {
-      ['santo', 'grafico', 'redactor', 'notas'].forEach(id => {
-        document.getElementById(`sec-${id}`).classList.add('hidden');
-        document.getElementById(`tab-${id}`).className = 'py-3 px-2 text-stone-500 hover:text-stone-900 transition-all';
-      });
-      document.getElementById(`sec-${pestana}`).classList.remove('hidden');
-      document.getElementById(`tab-${pestana}`).className = 'py-3 px-2 tab-active transition-all';
-      if (pestana === 'grafico') actualizarCanvas();
-    }
-
-    // SANTO Y GRATITUD
-    let indexFrase = 0;
-    function cargarFraseDelDia() {
-      const diaDelAno = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-      indexFrase = diaDelAno % frasesGratitud.length;
-      document.getElementById('frase-fraterna').innerText = `"${frasesGratitud[indexFrase]}"`;
-    }
-
-    function cambiarFraseGratitud() {
-      indexFrase = (indexFrase + 1) % frasesGratitud.length;
-      document.getElementById('frase-fraterna').innerText = `"${frasesGratitud[indexFrase]}"`;
-    }
-
-    function cargarSanto() {
-      const guardado = localStorage.getItem('santo_personalizado_jh');
-      if (guardado) {
-        try {
-          const obj = JSON.parse(guardado);
-          document.getElementById('santo-nombre').innerText = obj.santo;
-          document.getElementById('santo-cita').innerText = obj.cita;
-          document.getElementById('santo-celebracion').innerText = obj.tipo;
-          return;
-        } catch(e) {}
-      }
-      const item = santoralColeccion[0];
-      document.getElementById('santo-nombre').innerText = item.santo;
-      document.getElementById('santo-cita').innerText = item.cita;
-      document.getElementById('santo-celebracion').innerText = item.tipo;
-    }
-
-    function alternarEditorSanto() {
-      const ed = document.getElementById('editor-santo');
-      ed.classList.toggle('hidden');
-      if (!ed.classList.contains('hidden')) {
-        document.getElementById('input-edit-santo').value = document.getElementById('santo-nombre').innerText;
-        document.getElementById('input-edit-cita').value = document.getElementById('santo-cita').innerText;
-        document.getElementById('input-edit-tipo').value = document.getElementById('santo-celebracion').innerText;
-      }
-    }
-
-    function guardarSantoPersonalizado() {
-      const nombre = document.getElementById('input-edit-santo').value.trim() || 'San Pedro Apóstol';
-      const cita = document.getElementById('input-edit-cita').value.trim() || '«La paz y la gracia del Señor estén con vosotros.»';
-      const tipo = document.getElementById('input-edit-tipo').value.trim() || 'Conmemoración del Día';
-
-      document.getElementById('santo-nombre').innerText = nombre;
-      document.getElementById('santo-cita').innerText = cita;
-      document.getElementById('santo-celebracion').innerText = tipo;
-
-      localStorage.setItem('santo_personalizado_jh', JSON.stringify({ santo: nombre, cita: cita, tipo: tipo }));
-      alternarEditorSanto();
-      ponerDatosDelDia();
-    }
-
-    function cargarSantoAleatorio() {
-      const azar = santoralColeccion[Math.floor(Math.random() * santoralColeccion.length)];
-      document.getElementById('santo-nombre').innerText = azar.santo;
-      document.getElementById('santo-cita').innerText = azar.cita;
-      document.getElementById('santo-celebracion').innerText = azar.tipo;
-      ponerDatosDelDia();
-    }
-
-    function ponerDatosDelDia() {
-      document.getElementById('canvas-title-input').value = document.getElementById('santo-nombre').innerText;
-      document.getElementById('canvas-quote-input').value = document.getElementById('santo-cita').innerText;
-      actualizarCanvas();
-    }
-
-    // TALLER GRÁFICO (CANVAS EXPORTACIÓN)
-    function actualizarCanvas() {
-      const canvas = document.getElementById('sacroCanvas');
-      const ctx = canvas.getContext('2d');
-      const sizeVal = document.getElementById('canvas-size').value;
-      const styleVal = document.getElementById('canvas-style').value;
-      const title = document.getElementById('canvas-title-input').value;
-      const subtitle = document.getElementById('canvas-date-input').value;
-      const quote = document.getElementById('canvas-quote-input').value;
-
-      // Dimensiones
-      if (sizeVal === '9_16') {
-        canvas.width = 1080; canvas.height = 1920; // Estado WhatsApp / Stories
-      } else if (sizeVal === '4_3') {
-        canvas.width = 1200; canvas.height = 900;  // Post Facebook
-      } else {
-        canvas.width = 1920; canvas.height = 1080; // Portada YouTube / Banner
-      }
-
-      const W = canvas.width;
-      const H = canvas.height;
-
-      // Fondos y Paletas
-      if (styleVal === 'dore') {
-        ctx.fillStyle = '#EFE9DE'; // Pergamino clásico
-        ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = '#2B2621';
-        ctx.lineWidth = 14;
-        ctx.strokeRect(30, 30, W - 60, H - 60);
-        ctx.lineWidth = 4;
-        ctx.strokeRect(48, 48, W - 96, H - 96);
-        ctx.fillStyle = '#2B2621';
-      } else if (styleVal === 'catedral') {
-        ctx.fillStyle = '#14161A'; // Pizarra negra
-        ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = '#C5A059'; // Dorado
-        ctx.lineWidth = 12;
-        ctx.strokeRect(30, 30, W - 60, H - 60);
-        ctx.lineWidth = 3;
-        ctx.strokeRect(46, 46, W - 92, H - 92);
-        ctx.fillStyle = '#FAF7F2';
-      } else {
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = '#9E7A32';
-        ctx.lineWidth = 8;
-        ctx.strokeRect(30, 30, W - 60, H - 60);
-        ctx.fillStyle = '#1C1F26';
-      }
-
-      // Emblema Sacro Superior
-      ctx.textAlign = 'center';
-      ctx.font = 'bold 54px serif';
-      ctx.fillText('☩', W / 2, H * 0.16);
-
-      // Subtítulo Superior
-      ctx.font = '600 28px sans-serif';
-      ctx.letterSpacing = '6px';
-      ctx.fillText(subtitle.toUpperCase(), W / 2, H * 0.22);
-
-      // Título Principal
-      ctx.font = 'bold 74px serif';
-      ctx.letterSpacing = '1px';
-      ctx.fillText(title, W / 2, H * 0.35);
-
-      // Línea ornamental divisoria
-      ctx.beginPath();
-      ctx.moveTo(W * 0.3, H * 0.40);
-      ctx.lineTo(W * 0.7, H * 0.40);
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = styleVal === 'catedral' ? '#C5A059' : '#8A7356';
-      ctx.stroke();
-
-      // Cita o Reflexión (Ajuste automático de texto)
-      ctx.font = 'italic 44px serif';
-      const lineas = ajustarTexto(ctx, quote, W * 0.75);
-      let posY = H * 0.52;
-      lineas.forEach(l => {
-        ctx.fillText(l, W / 2, posY);
-        posY += 62;
-      });
-
-      // Firma inferior discreta
-      ctx.font = '300 24px sans-serif';
-      ctx.letterSpacing = '3px';
-      ctx.fillText("CATEDRAL DE SAN PEDRO APÓSTOL · CALI", W / 2, H * 0.90);
-    }
-
-    function ajustarTexto(ctx, texto, anchoMax) {
-      const palabras = texto.split(' ');
-      const lineas = [];
-      let lineaActual = palabras[0] || '';
-
-      for (let i = 1; i < palabras.length; i++) {
-        const prueba = lineaActual + ' ' + palabras[i];
-        if (ctx.measureText(prueba).width < anchoMax) {
-          lineaActual = prueba;
-        } else {
-          lineas.push(lineaActual);
-          lineaActual = palabras[i];
-        }
-      }
-      if (lineaActual) lineas.push(lineaActual);
-      return lineas;
-    }
-
-    function descargarImagen() {
-      const canvas = document.getElementById('sacroCanvas');
-      const enlace = document.createElement('a');
-      enlace.download = 'estado-liturgico-jh.png';
-      enlace.href = canvas.toDataURL('image/png');
-      enlace.click();
-    }
-
-    // CONSEJERO DE REDACCIÓN
-    const plantillas = {
-      pastoral: `Estimada comunidad de la Catedral de San Pedro Apóstol,\n\nCon un saludo fraterno en Cristo Jesús, me dirijo a ustedes para recordarles la importancia de perseverar en la oración y en la caridad mutua en este tiempo de gracia...\n\nOremos juntos por nuestras familias y enfermos.\n\nPbro. Jaime Humberto Ramos Escobar\nPárroco`,
-      solemne: `Al Señor Arzobispo y Miembros del Honorable Cabildo Catedralicio,\n\nPor medio de la presente, me permito comunicarles con atento y respetuoso saludo filial los pormenores concernientes a las celebraciones litúrgicas de nuestra Catedral...\n\nAgradeciendo de antemano su bendición pastoral,\n\nEn Cristo Sumo y Eterno Sacerdote,\nPbro. Jaime Humberto Ramos Escobar`,
-      homilia: `ESQUEMA DE HOMILÍA DOMINICAL\n\n1. VER (Realidad cotidiana):\n- ¿Dónde nos encontramos hoy con la sed de Dios?\n\n2. JUZGAR (Luz del Evangelio):\n- La respuesta de Jesús: confianza frente al desaliento.\n\n3. ACTUAR (Compromiso pastoral):\n- Propósito concreto de caridad para la comunidad en esta semana.`,
-      fraterno: `Apreciado hermano y amigo:\n\nEn este día especial quiero hacerte llegar mi más sincero saludo, acompañado de mi oración y bendición sacerdotal. Que el Señor siga colmando tu vida de salud, trabajo fecundo y la paz serena que solo proviene de Él.\n\nUn fuerte abrazo con aprecio sincero,\nPbro. Jaime Humberto Ramos Escobar`
-    };
-
-    function seleccionarPlantilla(tipo) {
-      document.getElementById('texto-pastoral').value = plantillas[tipo];
-    }
-
-    function copiarTextoRedactado() {
-      const area = document.getElementById('texto-pastoral');
-      navigator.clipboard.writeText(area.value).then(() => {
-        const btn = document.getElementById('btn-copiar');
-        btn.innerText = '¡Copiado! ✓';
-        setTimeout(() => btn.innerText = 'Copiar Texto 📋', 2000);
-      });
-    }
-
-    // CUADERNO DE NOTAS
-    function guardarNotas() {
-      const notas = document.getElementById('cuaderno-notas').value;
-      localStorage.setItem('notas_jh_catedral', notas);
-      const st = document.getElementById('status-guardado');
-      st.innerText = 'Guardando...';
-      setTimeout(() => st.innerText = 'Guardado ✓', 600);
-    }
-
-    function cargarNotasGuardadas() {
-      const guardado = localStorage.getItem('notas_jh_catedral');
-      if (guardado) {
-        document.getElementById('cuaderno-notas').value = guardado;
-      }
-    }
-
-    function limpiarNotas() {
-      if (confirm('¿Desea borrar las notas actuales del cuaderno?')) {
-        document.getElementById('cuaderno-notas').value = '';
-        localStorage.removeItem('notas_jh_catedral');
-      }
-    }
-
-    function descargarNotasTxt() {
-      const contenido = document.getElementById('cuaderno-notas').value;
-      const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'notas-homilias-jh.txt';
-      a.click();
-    }
-  </script>
-</body>
-</html>
+        <div style="margin-top: 12px; display: flex; justify-
