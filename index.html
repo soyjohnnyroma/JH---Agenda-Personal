@@ -3,613 +3,634 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JH - Agenda Personal</title>
-  
+  <title>JH — Agenda Personal & Dashboard</title>
+
+  <!-- Favicon y Apple Touch Icon (Monograma JH de WhatsApp) -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,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">
+  <link rel="apple-touch-icon" href="data:image/png;base64,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">
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href='data:application/manifest+json,{"name":"JH Agenda Personal","short_name":"JH Agenda","start_url":".","display":"standalone","background_color":"#FFFFFF","theme_color":"#0F172A","icons":[{"src":"data:image/png;base64,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","sizes":"512x512","type":"image/png"}]}'
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts Litúrgicas -->
+  <!-- Google Fonts Litúrgicas y Modernas -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
+    tailwind.config = {{
+      theme: {{
+        extend: {{
+          fontFamily: {{
             cinzel: ['Cinzel', 'serif'],
-            serif: ['Playfair Display', 'serif'],
+            serif: ['Newsreader', 'serif'],
             sans: ['Plus Jakarta Sans', 'sans-serif'],
-          },
-          colors: {
-            liturgia: {
-              crema: '#FAF7F2',
-              pergamino: '#F3EDE2',
-              dorado: '#C5A059',
-              doradoOscuro: '#9E7A32',
-              pizarra: '#1C1F26',
-              carbon: '#121418',
-              tinta: '#2C2A29'
-            }
-          }
-        }
-      }
-    }
+          }}
+        }}
+      }}
+    }}
   </script>
   <style>
-    body { background-color: #FAF7F2; color: #2C2A29; }
-    .tab-active { border-bottom: 2px solid #C5A059; color: #9E7A32; font-weight: 700; }
-    /* Scrollbar invisible para las pestañas en móviles */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body {{ background-color: #FFFFFF; color: #0F172A; }}
+    .tab-active {{ border-bottom: 2px solid #0F172A; color: #0F172A; font-weight: 700; }}
+    .no-scrollbar::-webkit-scrollbar {{ display: none; }}
+    .no-scrollbar {{ -ms-overflow-style: none; scrollbar-width: none; }}
   </style>
 </head>
-<body class="min-h-screen font-sans flex flex-col justify-between antialiased selection:bg-amber-100 selection:text-amber-900">
+<body class="min-h-screen font-sans flex flex-col justify-between antialiased bg-white text-slate-900">
 
-  <!-- CABECERA SOLEMNE, 100% CENTRADA, SIN IMAGENES ROTAS (TAL COMO EN LA VERSIÓN DE 21:55) -->
-  <header class="bg-liturgia-carbon text-liturgia-crema py-7 px-4 shadow-md border-b-2 border-liturgia-dorado text-center">
-    <div class="max-w-3xl mx-auto flex flex-col items-center justify-center">
+  <!-- CABECERA DASHBOARD GENERAL -->
+  <header class="border-b border-slate-200 py-6 px-4 sm:px-8 bg-white">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-5">
       
-      <!-- Frase superior de gratitud -->
-      <div class="text-[12px] sm:text-xs uppercase tracking-widest text-liturgia-dorado font-serif italic mb-1.5">
-        Con sincera gratitud y aprecio fraternal
-      </div>
-      
-      <!-- Catedral tamaño medio -->
-      <div class="text-[11px] sm:text-xs uppercase tracking-wider text-stone-400 font-cinzel mb-1">
-        Catedral Metropolitana de San Pedro Apóstol · Cali
-      </div>
-      
-      <!-- Título Principal que Sobresale -->
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-cinzel tracking-widest font-bold text-white uppercase mt-1 mb-2">
-        JH - AGENDA PERSONAL
-      </h1>
-      
-      <!-- Cita exacta de San Francisco de Asís (WhatsApp de JH) -->
-      <p class="text-xs sm:text-sm text-stone-300 font-serif italic max-w-xl mx-auto leading-relaxed">
-        «Yo necesito pocas cosas y lo poco que necesito lo necesito poco» <span class="font-sans text-[11px] font-semibold text-liturgia-dorado not-italic">(SFA)</span>
-      </p>
-
-      <!-- Caja del Reloj y Tiempo Litúrgico en Vivo -->
-      <div class="mt-5 bg-liturgia-pizarra border border-stone-700/80 rounded-xl py-3 px-6 text-center shadow-inner min-w-[240px] max-w-sm">
-        <div id="live-time" class="text-2xl sm:text-3xl font-mono text-liturgia-dorado font-bold tracking-wider">--:--:--</div>
-        <div id="live-date" class="text-xs text-stone-300 capitalize font-medium mt-1">Cargando fecha...</div>
-        <div id="liturgical-badge" class="mt-2 inline-block text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
-          Tiempo Ordinario / Verde
+      <!-- Saludo Personalizado Estilo Claude + Logo JH -->
+      <div class="flex items-center gap-4">
+        <!-- Monograma Avatar -->
+        <img src="data:image/png;base64,{b64_mono}" alt="Monograma JH" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-slate-300 shadow-sm bg-black object-contain flex-shrink-0">
+        <div>
+          <div class="text-[11px] uppercase tracking-widest text-slate-400 font-semibold mb-0.5">
+            Catedral Metropolitana de San Pedro Apóstol · Cali
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold font-sans text-slate-900 tracking-tight">
+            ¿Qué vamos a hacer hoy, Jaime?
+          </h1>
+          <p class="text-xs text-slate-500 font-serif italic mt-0.5">
+            «Yo necesito pocas cosas y lo poco que necesito lo necesito poco» <span class="font-sans text-[10px] font-semibold text-slate-400 not-italic">(SFA)</span>
+          </p>
         </div>
+      </div>
+
+      <!-- Reloj & Tiempo Litúrgico en Vivo -->
+      <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-right self-stretch md:self-auto justify-between md:justify-end shadow-sm">
+        <div>
+          <div id="live-time" class="text-lg sm:text-xl font-mono font-bold text-slate-900">--:--:--</div>
+          <div id="live-date" class="text-[11px] text-slate-500 capitalize">Cargando fecha...</div>
+        </div>
+        <span id="liturgical-badge" class="text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 border border-emerald-300">
+          Tiempo Ordinario
+        </span>
       </div>
 
     </div>
   </header>
 
-  <!-- NAVEGACIÓN PRINCIPAL (PESTAÑAS COMPLETAS Y VISIBLES SIN RECORTES) -->
-  <nav class="bg-white border-b border-stone-200 sticky top-0 z-30 shadow-sm">
-    <div class="max-w-4xl mx-auto flex justify-start sm:justify-center overflow-x-auto no-scrollbar gap-2 sm:gap-6 px-3 text-[11px] sm:text-xs md:text-sm font-cinzel font-semibold whitespace-nowrap">
-      <button type="button" onclick="cambiarPestana('santo')" id="tab-santo" class="py-3.5 px-3 tab-active transition-all flex-shrink-0">
-        El Santo & Pensamiento
+  <!-- NAVEGACIÓN DASHBOARD -->
+  <nav class="border-b border-slate-200 bg-white sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto flex overflow-x-auto no-scrollbar gap-6 px-4 sm:px-8 text-xs sm:text-sm font-medium text-slate-500 whitespace-nowrap">
+      <button type="button" onclick="cambiarPestana('agenda')" id="tab-agenda" class="py-3.5 tab-active transition-all flex-shrink-0">
+        📅 Agenda & Actividades de Hoy
       </button>
-      <button type="button" onclick="cambiarPestana('grafico')" id="tab-grafico" class="py-3.5 px-3 text-stone-500 hover:text-stone-900 transition-all flex-shrink-0">
-        Taller Gráfico
+      <button type="button" onclick="cambiarPestana('evangelio')" id="tab-evangelio" class="py-3.5 hover:text-slate-900 transition-all flex-shrink-0">
+        📖 Evangelio & Santoral
       </button>
-      <button type="button" onclick="cambiarPestana('redactor')" id="tab-redactor" class="py-3.5 px-3 text-stone-500 hover:text-stone-900 transition-all flex-shrink-0">
-        Consejero Pastoral
+      <button type="button" onclick="cambiarPestana('ia-imagenes')" id="tab-ia-imagenes" class="py-3.5 hover:text-slate-900 transition-all flex-shrink-0">
+        🎨 Creador IA & Imágenes
       </button>
-      <button type="button" onclick="cambiarPestana('notas')" id="tab-notas" class="py-3.5 px-3 text-stone-500 hover:text-stone-900 transition-all flex-shrink-0">
-        Cuaderno de Notas
+      <button type="button" onclick="cambiarPestana('redactor')" id="tab-redactor" class="py-3.5 hover:text-slate-900 transition-all flex-shrink-0">
+        ✍️ Asistente de Redacción
+      </button>
+      <button type="button" onclick="cambiarPestana('notas')" id="tab-notas" class="py-3.5 hover:text-slate-900 transition-all flex-shrink-0">
+        📝 Reuniones & Apuntes
       </button>
     </div>
   </nav>
 
-  <!-- CONTENIDO CENTRAL DE LAS PESTAÑAS -->
-  <main class="max-w-4xl mx-auto w-full p-4 sm:p-6 flex-grow">
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-5xl mx-auto w-full p-4 sm:p-8 flex-grow">
 
-    <!-- SECCIÓN 1: EL SANTO & PENSAMIENTO DE GRATITUD -->
-    <section id="sec-santo" class="space-y-6">
-      
-      <!-- Tarjeta del Santo del Día -->
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6 relative overflow-hidden">
-        <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-50 rounded-full blur-2xl pointer-events-none"></div>
-        
-        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
-          <span class="text-xs font-cinzel font-bold text-liturgia-doradoOscuro uppercase tracking-wider">
-            Conmemoración Litúrgica del Día
-          </span>
-          <!-- Enlace Directo a Google que siempre abre el Santo de hoy -->
-          <a id="btn-google-santo" href="https://www.google.com/search?q=santo+del+dia+hoy+liturgia+catolica" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-stone-50 hover:bg-amber-50 text-stone-700 hover:text-liturgia-doradoOscuro border border-stone-300 rounded text-xs font-medium transition shadow-sm w-fit">
-            <span>🔍</span> Consultar Santos de Hoy en Google ↗
-          </a>
-        </div>
-
-        <h2 id="santo-nombre" class="text-2xl sm:text-3xl font-serif font-bold text-stone-900 mt-3">San Pedro Apóstol</h2>
-        <p id="santo-cita" class="text-stone-600 font-serif italic mt-2 text-sm sm:text-base leading-relaxed">
-          «Tú eres el Cristo, el Hijo de Dios vivo.» (Mt 16, 16)
-        </p>
-        
-        <div class="mt-4 pt-4 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500">
-          <span id="santo-celebracion" class="font-medium">Patrono Principal de la Catedral</span>
-          <div class="flex gap-2">
-            <button type="button" onclick="personalizarSantoManual()" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded transition font-medium">
-              Personalizar Santo ✎
-            </button>
-            <button type="button" onclick="cargarSantoAleatorio()" class="px-3 py-1 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded transition font-medium">
-              Ver otra conmemoración ⟳
-            </button>
+    <!-- SECCIÓN 0: AGENDA & REUNIONES DEL DÍA (NUEVA) -->
+    <section id="sec-agenda" class="space-y-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm space-y-5">
+        <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 pb-4 border-b border-slate-200">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Compromisos & Reuniones del Día</h2>
+            <p class="text-xs text-slate-500">Planifique con quién se tiene que ver y sus actividades diarias en la Catedral.</p>
           </div>
-        </div>
-      </div>
-
-      <!-- Tarjeta: Pensamiento Fraterno para JH (Gratitud 365) -->
-      <div class="bg-liturgia-pergamino border border-amber-200/90 rounded-xl p-6 relative shadow-sm">
-        <div class="flex items-center gap-2 mb-2">
-          <span class="text-lg">🕯️</span>
-          <h3 class="text-xs font-cinzel font-bold uppercase tracking-widest text-liturgia-doradoOscuro">
-            Una Palabra de Aprecio Fraternal · Para JH
-          </h3>
-        </div>
-        <p id="frase-fraterna" class="text-stone-800 font-serif text-base sm:text-lg italic leading-relaxed">
-          "Hay amistades que no necesitan de la prisa ni de la presencia diaria; se sostienen en la certeza de la lealtad y el respeto mutuo a través de los años."
-        </p>
-        <div class="mt-4 flex flex-wrap justify-between items-center gap-2 text-xs text-stone-500">
-          <span>Reflexión diaria para JH</span>
-          <button type="button" onclick="cambiarFraseGratitud()" class="px-3.5 py-1.5 bg-white border border-stone-300 rounded shadow-sm text-stone-700 hover:bg-stone-50 transition font-medium">
-            Leer otra reflexión ➔
+          <button type="button" onclick="limpiarAgendaCompletada()" class="text-xs text-slate-500 hover:text-slate-800 font-medium">
+            Limpiar tareas completadas 🧹
           </button>
         </div>
-      </div>
 
-    </section>
-
-    <!-- SECCIÓN 2: TALLER GRÁFICO (GENERADOR DE IMÁGENES Y ESTADOS) -->
-    <section id="sec-grafico" class="hidden space-y-6">
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
-        <h2 class="text-xl font-cinzel font-bold text-stone-900">Taller de Publicación & Estados</h2>
-        <p class="text-xs text-stone-500 font-serif mt-1">Genera imágenes litúrgicas sobrias listas para compartir en WhatsApp, Facebook o YouTube.</p>
-
-        <!-- Controles -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 text-xs">
-          <!-- Formato de Tamaño -->
-          <div>
-            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Formato / Tamaño:</label>
-            <select id="canvas-size" onchange="actualizarCanvas()" class="w-full p-2.5 border border-stone-300 rounded bg-white">
-              <option value="9_16">Estado WhatsApp / Stories (9:16)</option>
-              <option value="4_3">Post Facebook (4:3)</option>
-              <option value="16_9">Portada YouTube / Banner (16:9)</option>
-            </select>
+        <!-- Formulario para agregar nuevo compromiso -->
+        <form onsubmit="agregarActividad(event)" class="grid grid-cols-1 sm:grid-cols-12 gap-3 text-xs">
+          <div class="sm:col-span-3">
+            <label class="block text-slate-500 mb-1 font-semibold">Hora / Momento:</label>
+            <input type="text" id="act-hora" placeholder="Ej: 10:00 AM" required class="w-full p-2.5 border border-slate-300 rounded bg-slate-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-slate-400">
           </div>
-
-          <!-- Estilo Visual -->
-          <div>
-            <label class="block font-semibold mb-1 text-stone-700 uppercase tracking-wider">Estilo Litúrgico:</label>
-            <select id="canvas-style" onchange="actualizarCanvas()" class="w-full p-2.5 border border-stone-300 rounded bg-white">
-              <option value="catedral">Mármol Catedral (Pizarra Negra & Dorado)</option>
-              <option value="dore">Grabado Clásico (Papel Pergamino & Tinta)</option>
-              <option value="minimal">Blanco Sacro (Limpio & Oro)</option>
-            </select>
+          <div class="sm:col-span-6">
+            <label class="block text-slate-500 mb-1 font-semibold">Actividad / Personas con quien se reúne:</label>
+            <input type="text" id="act-titulo" placeholder="Ej: Reunión con la Secretaria / Consejo Parroquial" required class="w-full p-2.5 border border-slate-300 rounded bg-slate-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-slate-400">
           </div>
-        </div>
-
-        <!-- Campos de Texto Editables -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-xs">
-          <div>
-            <label class="block font-semibold mb-1 text-stone-700">Título / Santo:</label>
-            <input type="text" id="canvas-title-input" value="San Pedro Apóstol" oninput="actualizarCanvas()" class="w-full p-2.5 border border-stone-300 rounded bg-stone-50 font-serif">
-          </div>
-          <div>
-            <label class="block font-semibold mb-1 text-stone-700">Subtítulo / Parroquia:</label>
-            <input type="text" id="canvas-date-input" value="Catedral Metropolitana de Cali" oninput="actualizarCanvas()" class="w-full p-2.5 border border-stone-300 rounded bg-stone-50 font-serif">
-          </div>
-          <div class="sm:col-span-2">
-            <label class="block font-semibold mb-1 text-stone-700">Cita Bíblica o Mensaje:</label>
-            <textarea id="canvas-quote-input" rows="2" oninput="actualizarCanvas()" class="w-full p-2.5 border border-stone-300 rounded bg-stone-50 font-serif text-sm">«Tú eres Pedro, y sobre esta piedra edificaré mi Iglesia.» (Mt 16, 18)</textarea>
-          </div>
-        </div>
-
-        <!-- Vista Previa del Lienzo -->
-        <div class="mt-6 flex flex-col items-center">
-          <div class="border-4 border-stone-800 shadow-xl rounded overflow-hidden max-w-full bg-stone-900">
-            <canvas id="sacroCanvas" width="1080" height="1920" class="max-h-[460px] w-auto block"></canvas>
-          </div>
-          <div class="mt-4 flex flex-wrap justify-center gap-3">
-            <button type="button" onclick="descargarImagen()" class="px-5 py-2.5 bg-liturgia-carbon text-liturgia-dorado font-cinzel text-xs font-bold rounded shadow hover:bg-black transition flex items-center gap-2 border border-liturgia-dorado">
-              <span>⬇</span> Descargar Imagen PNG
-            </button>
-            <button type="button" onclick="sincronizarSantoDelDia()" class="px-4 py-2.5 bg-stone-100 text-stone-700 font-cinzel text-xs font-bold rounded hover:bg-stone-200 transition">
-              Sincronizar Santo de Hoy ⟳
+          <div class="sm:col-span-3 flex items-end">
+            <button type="submit" class="w-full p-2.5 bg-slate-900 text-white font-semibold rounded hover:bg-black transition shadow-sm">
+              + Agregar Compromiso
             </button>
           </div>
+        </form>
+
+        <!-- Lista de Actividades -->
+        <div class="space-y-3 pt-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block">Lista de Actividades Programadas:</span>
+          <div id="lista-actividades" class="space-y-2">
+            <!-- Se llena dinámicamente con JS -->
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 3: CONSEJERO DE REDACCIÓN PASTORAL -->
-    <section id="sec-redactor" class="hidden space-y-6">
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
-        <h2 class="text-xl font-cinzel font-bold text-stone-900">Consejero de Redacción Pastoral</h2>
-        <p class="text-xs text-stone-500 font-serif mt-1">Estructurador ágil de cartas, homilías y mensajes para el despacho o la comunidad.</p>
-
-        <!-- Selector de Tono -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-xs font-cinzel">
-          <button type="button" onclick="seleccionarPlantilla('pastoral')" class="p-2.5 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Cercano & Pastoral</button>
-          <button type="button" onclick="seleccionarPlantilla('solemne')" class="p-2.5 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Solemne / Curia</button>
-          <button type="button" onclick="seleccionarPlantilla('homilia')" class="p-2.5 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Guion de Homilía</button>
-          <button type="button" onclick="seleccionarPlantilla('fraterno')" class="p-2.5 border rounded text-center hover:bg-stone-50 font-bold border-stone-300">Felicitación / Amistad</button>
-        </div>
-
-        <!-- Área de Edición -->
-        <div class="mt-4">
-          <div class="flex justify-between items-center mb-1">
-            <label class="text-xs font-semibold text-stone-700 uppercase tracking-wider">Borrador del Documento:</label>
-            <button type="button" onclick="copiarTextoRedactado()" id="btn-copiar" class="text-xs text-liturgia-doradoOscuro hover:underline font-bold">Copiar Texto 📋</button>
-          </div>
-          <textarea id="texto-pastoral" rows="10" class="w-full p-4 border border-stone-300 rounded font-serif text-stone-800 text-sm leading-relaxed focus:outline-none focus:ring-1 focus:ring-amber-500 bg-stone-50"></textarea>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: CUADERNO DE APUNTES & INTENCIONES -->
-    <section id="sec-notas" class="hidden space-y-6">
-      <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
-        <div class="flex justify-between items-center">
-          <div>
-            <h2 class="text-xl font-cinzel font-bold text-stone-900">Cuaderno de Homilías & Apuntes</h2>
-            <p class="text-xs text-stone-500 font-serif">Las notas se guardan automáticamente en la memoria de este teléfono o computador.</p>
-          </div>
-          <span id="status-guardado" class="text-[11px] text-emerald-600 font-mono font-bold">Guardado ✓</span>
-        </div>
-
-        <textarea id="cuaderno-notas" oninput="guardarNotas()" rows="12" placeholder="Escriba aquí ideas para sermones, intenciones de misa de la Catedral o recordatorios personales..." class="w-full mt-4 p-4 border border-stone-300 rounded font-serif text-stone-900 text-sm leading-relaxed bg-amber-50/20 focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+    <!-- SECCIÓN 1: EVANGELIO & SANTORAL DEL DÍA -->
+    <section id="sec-evangelio" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <div class="mt-3 flex justify-between items-center text-xs">
-          <button type="button" onclick="limpiarNotas()" class="text-rose-700 hover:underline">Borrar notas</button>
-          <button type="button" onclick="descargarNotasTxt()" class="text-stone-700 hover:underline font-semibold">Descargar como texto (.txt) ↓</button>
+        <div class="md:col-span-2 bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-4">
+          <div class="flex justify-between items-center border-b border-slate-200 pb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Evangelio del Día</span>
+            <a href="https://www.vaticannews.va/es/evangelio-de-hoy.html" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-blue-600 hover:underline">
+              Leer Lecturas en Vatican News ↗
+            </a>
+          </div>
+          <div>
+            <h2 id="evangelio-pasaje" class="text-lg font-serif font-bold text-slate-900">Evangelio según San Mateo (Mt 16, 13-19)</h2>
+            <p id="evangelio-texto" class="text-sm font-serif italic text-slate-700 leading-relaxed mt-2">
+              «Y yo te digo que tú eres Pedro, y sobre esta piedra edificaré mi Iglesia, y las puertas del infierno no prevalecerán contra ella. Te daré las llaves del Reino de los Cielos...»
+            </p>
+          </div>
+          <div class="pt-2 flex flex-wrap gap-2 text-xs">
+            <button type="button" onclick="copiarEvangelio()" class="px-3 py-1.5 bg-white border border-slate-300 rounded text-slate-700 hover:bg-slate-100 font-medium transition shadow-sm">
+              Copiar Cita Evangelio 📋
+            </button>
+            <button type="button" onclick="enviarEvangelioAIaPrompt()" class="px-3 py-1.5 bg-slate-900 text-white rounded font-medium hover:bg-black transition shadow-sm">
+              Generar Imagen IA con este Evangelio ➔
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between space-y-4 shadow-sm">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 block mb-1">Santoral Litúrgico</span>
+            <h3 id="santo-nombre-dia" class="text-xl font-serif font-bold text-slate-900">San Pedro y San Pablo, Apóstoles</h3>
+            <p id="santo-detalles" class="text-xs text-slate-600 mt-2 leading-relaxed">
+              Columnas fundamentales de la Iglesia y patronos de la Sede Catedralicia.
+            </p>
+          </div>
+          <div class="space-y-2 pt-3 border-t border-slate-100">
+            <a href="https://www.google.com/search?q=santo+del+dia+hoy+liturgia+catolica" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded transition">
+              🔍 Verificar Santoral en Google
+            </a>
+            <button type="button" onclick="editarSantoManual()" class="w-full text-center text-xs text-slate-500 hover:text-slate-800 py-1">
+              Editar Santo del día manualmente ✎
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-3 shadow-sm">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800">Estructura Sugerida para la Homilía</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-3 bg-slate-50 rounded border border-slate-200/60">
+            <span class="font-bold text-slate-900 block mb-1">1. VER (Realidad):</span>
+            <p class="text-slate-600">Identificar las búsquedas de fe y las situaciones de la comunidad de la Catedral hoy.</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded border border-slate-200/60">
+            <span class="font-bold text-slate-900 block mb-1">2. JUZGAR (Palabra):</span>
+            <p class="text-slate-600">Iluminar con la promesa de Cristo y la certeza transmitida en las Sagradas Escrituras.</p>
+          </div>
+          <div class="p-3 bg-slate-50 rounded border border-slate-200/60">
+            <span class="font-bold text-slate-900 block mb-1">3. ACTUAR (Compromiso):</span>
+            <p class="text-slate-600">Llamado concreto a la fraternidad, la oración constante y el servicio comunitario.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CREADOR DE PROMPTS Y HERRAMIENTAS IA -->
+    <section id="sec-ia-imagenes" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pb-4 border-b border-slate-200">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Estudio Creador de Prompts & Generadores de IA</h2>
+            <p class="text-xs text-slate-500">Diseña imágenes sacras de alta definición para estados y redes con herramientas rápidas.</p>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200 rounded">
+            Optimizado para Ideogram, Grok & Gemini
+          </span>
+        </div>
+
+        <div class="mt-6 space-y-4">
+          <label class="block text-xs font-bold uppercase text-slate-700 tracking-wider">Configurar la escena deseada:</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div>
+              <label class="block text-slate-500 mb-1">Sujeto / Santo:</label>
+              <input type="text" id="prompt-subject" value="San Pedro Apóstol sosteniendo las llaves del Reino" oninput="generarPromptIA()" class="w-full p-2.5 border border-slate-300 rounded bg-slate-50">
+            </div>
+            <div>
+              <label class="block text-slate-500 mb-1">Estilo Artístico:</label>
+              <select id="prompt-style" onchange="generarPromptIA()" class="w-full p-2.5 border border-slate-300 rounded bg-slate-50">
+                <option value="dore">Grabado clásico estilo Gustave Doré, blanco y negro</option>
+                <option value="vitral">Vitral de Catedral con luz dorada celestial</option>
+                <option value="pintura">Óleo sacro clásico renacentista, iluminación dramática</option>
+                <option value="minimalista">Ilustración sacra minimalista moderna en fondo blanco</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-500 mb-1">Formato de Imagen:</label>
+              <select id="prompt-ratio" onchange="generarPromptIA()" class="w-full p-2.5 border border-slate-300 rounded bg-slate-50">
+                <option value="9:16">Vertical (Estado de WhatsApp / Stories 9:16)</option>
+                <option value="4:3">Post Cuadrado / Horizontal (Facebook 4:3)</option>
+                <option value="16:9">Panorámico (YouTube 16:9)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 bg-slate-900 text-slate-100 rounded-lg text-xs space-y-2">
+            <div class="flex justify-between items-center text-slate-400">
+              <span class="font-mono text-[11px] uppercase">Prompt Optimizado para IA:</span>
+              <button type="button" onclick="copiarPromptIA()" id="btn-copiar-prompt" class="text-amber-400 hover:text-amber-300 font-bold">Copiar Prompt 📋</button>
+            </div>
+            <p id="prompt-resultado" class="font-serif italic text-sm text-slate-200">
+              "A sacred high-quality engraving in the style of Gustave Doré depicting San Pedro Apóstol sosteniendo las llaves del Reino, highly detailed, serene classical Catholic art, 9:16 aspect ratio, clean composition."
+            </p>
+          </div>
+
+          <div class="pt-4">
+            <span class="block text-xs font-bold text-slate-700 uppercase mb-3">Abrir Generador de Imágenes de Preferencia:</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <a href="https://ideogram.ai" target="_blank" rel="noopener noreferrer" class="p-3 border border-slate-200 rounded-lg bg-slate-50 hover:bg-blue-50 hover:border-blue-300 text-center font-bold text-slate-800 transition shadow-sm">
+                🚀 Ideogram.ai
+                <span class="block text-[10px] text-slate-500 font-normal mt-0.5">Rápido & Texto Perfecto</span>
+              </a>
+              <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="p-3 border border-slate-200 rounded-lg bg-slate-50 hover:bg-blue-50 hover:border-blue-300 text-center font-bold text-slate-800 transition shadow-sm">
+                ⚡ Gemini (Imagen)
+                <span class="block text-[10px] text-slate-500 font-normal mt-0.5">Gratuito e Ilimitado</span>
+              </a>
+              <a href="https://grok.com" target="_blank" rel="noopener noreferrer" class="p-3 border border-slate-200 rounded-lg bg-slate-50 hover:bg-blue-50 hover:border-blue-300 text-center font-bold text-slate-800 transition shadow-sm">
+                ✨ Grok AI
+                <span class="block text-[10px] text-slate-500 font-normal mt-0.5">Generación ultra rápida</span>
+              </a>
+              <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="p-3 border border-slate-200 rounded-lg bg-slate-50 hover:bg-blue-50 hover:border-blue-300 text-center font-bold text-slate-800 transition shadow-sm">
+                🤖 ChatGPT (DALL-E 3)
+                <span class="block text-[10px] text-slate-500 font-normal mt-0.5">Para conceptos complejos</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 mb-2">Diseñador Directo de Placas para Estados</h3>
+        <p class="text-xs text-slate-500 mb-4">Si prefieres no usar IA, genera una placa limpia en segundos.</p>
+        <div class="flex flex-col items-center">
+          <canvas id="sacroCanvas" width="540" height="960" class="border border-slate-300 shadow-md rounded max-h-[420px] w-auto block bg-white"></canvas>
+          <div class="mt-4 flex gap-3">
+            <button type="button" onclick="descargarImagen()" class="px-5 py-2.5 bg-slate-900 text-white font-semibold text-xs rounded hover:bg-black transition">
+              Descargar Imagen PNG ↓
+            </button>
+            <button type="button" onclick="actualizarCanvas()" class="px-4 py-2.5 bg-slate-100 text-slate-700 text-xs rounded hover:bg-slate-200 transition">
+              Refrescar Lienzo ⟳
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ASISTENTE DE REDACCIÓN PASTORAL -->
+    <section id="sec-redactor" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Asistente de Redacción Pastoral</h2>
+            <p class="text-xs text-slate-500">Plantillas y tono ajustado para comunicados, cartas formales e institucionales.</p>
+          </div>
+          <button type="button" onclick="copiarTextoRedactado()" id="btn-copiar-redaccion" class="text-xs font-bold text-blue-600 hover:underline">
+            Copiar Documento 📋
+          </button>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4 text-xs font-medium">
+          <button type="button" onclick="cargarPlantilla('institucional')" class="p-2.5 border border-slate-200 rounded bg-slate-50 hover:bg-slate-100 text-slate-800 transition">
+            🏛️ Comunicado Oficial
+          </button>
+          <button type="button" onclick="cargarPlantilla('curia')" class="p-2.5 border border-slate-200 rounded bg-slate-50 hover:bg-slate-100 text-slate-800 transition">
+            📜 Carta a la Curia / Obispo
+          </button>
+          <button type="button" onclick="cargarPlantilla('cercano')" class="p-2.5 border border-slate-200 rounded bg-slate-50 hover:bg-slate-100 text-slate-800 transition">
+            🤝 Saludo Cercano / Felicitación
+          </button>
+          <button type="button" onclick="cargarPlantilla('reunion')" class="p-2.5 border border-slate-200 rounded bg-slate-50 hover:bg-slate-100 text-slate-800 transition">
+            📋 Acta / Orden de Reunión
+          </button>
+        </div>
+        <div class="mt-4">
+          <textarea id="texto-pastoral" rows="12" class="w-full p-4 border border-slate-300 rounded font-serif text-slate-800 text-sm leading-relaxed bg-slate-50 focus:outline-none focus:ring-1 focus:ring-slate-400"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: REUNIONES & APUNTES -->
+    <section id="sec-notas" class="hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+        <div class="flex justify-between items-center pb-3 border-b border-slate-200">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Cuaderno de Reuniones & Intenciones</h2>
+            <p class="text-xs text-slate-500">Guardado automático en la memoria interna de este dispositivo.</p>
+          </div>
+          <span id="status-guardado" class="text-xs text-emerald-600 font-semibold">Guardado ✓</span>
+        </div>
+        <textarea id="cuaderno-notas" oninput="guardarNotas()" rows="14" placeholder="Anote aquí temas para el consejo parroquial, intenciones especiales de misa o compromisos de la Catedral..." class="w-full mt-4 p-4 border border-slate-200 rounded font-serif text-slate-800 text-sm leading-relaxed bg-slate-50/50 focus:outline-none focus:ring-1 focus:ring-slate-400"></textarea>
+        <div class="mt-4 flex justify-between items-center text-xs">
+          <button type="button" onclick="limpiarNotas()" class="text-rose-600 hover:underline">Borrar borrador</button>
+          <button type="button" onclick="descargarNotasTxt()" class="px-4 py-2 bg-slate-800 text-white rounded font-medium hover:bg-black transition shadow-sm">
+            Guardar como Archivo (.txt) ↓
+          </button>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- PIE DE PÁGINA SOBRIO Y ELEGANTE -->
-  <footer class="bg-stone-100 border-t border-stone-200 py-4 px-4 text-center text-xs text-stone-500 font-serif">
-    JH - Agenda Personal · Catedral Metropolitana de San Pedro Apóstol · Cali
+  <footer class="border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-400">
+    JH — Catedral Metropolitana de San Pedro Apóstol · Cali
   </footer>
 
-  <!-- LÓGICA JAVASCRIPT ROBUSTA -->
   <script>
-    // BANCO DE FRASES DE GRATITUD (365 DÍAS MOTOR)
-    const frasesGratitud = [
-      "Hay amistades que no necesitan de la prisa ni de la presencia diaria; se sostienen en la certeza de la lealtad y el respeto mutuo a través de los años.",
-      "Agradezco sinceramente a Dios por tu vida, tu vocación y por haber sido providencia serena en los momentos más difíciles de mi camino.",
-      "La verdadera generosidad no hace ruido ni busca reconocimiento; simplemente extiende la mano con nobleza, tal como lo hiciste conmigo.",
-      "Más de dos décadas de amistad me han enseñado que los lazos sinceros resisten el tiempo, la distancia y los silencios.",
-      "Tu respaldo en mis proyectos fue mucho más que un apoyo económico: fue un voto de confianza que jamás olvidaré.",
-      "En medio de las responsabilidades del altar y la Catedral, guardo siempre un lugar de oración y gratitud por tu ministerio y tu persona.",
-      "Un amigo leal es un refugio silencioso; gracias por ser ese punto de apoyo sereno en mi historia.",
-      "Acompañarte desde el día de tu ordenación sacerdotal ha sido un honor que el tiempo solo ha hecho más valioso.",
-      "Que la paz y la gracia que procuras a tantos fieles en San Pedro Apóstol retornen colmadas a tu propio espíritu.",
-      "Dicen que la gratitud es la memoria del corazón; el mío no olvida a quien me tendió la mano cuando comenzaba a caminar cuesta arriba.",
-      "Tu testimonio sacerdotal se distingue por la sobriedad, la templanza y el don de servir sin buscar aplausos humanos.",
-      "En un mundo lleno de estruendo y prisa, tu serenidad siempre ha sido una lección viva de fe.",
-      "Agradezco a la vida haber cruzado nuestros caminos en el Tolima y verte florecer como pastor en esta amada tierra caleña.",
-      "Que el Señor bendiga cada palabra que pronuncias en el púlpito y cada bendición que impartes en la Catedral.",
-      "Tener un amigo sacerdote como tú es un recordatorio constante de que la generosidad de Dios se manifiesta en personas reales.",
-      "Gracias por creer en mí y en mis sueños, incluso antes de que dieran frutos visibles.",
-      "La verdadera caridad no calcula; simplemente comprende, acoge y bendice. Gracias por ese testimonio.",
-      "En cada logro y avance de mi trabajo, hay una semilla de tu fe y de tu desinteresado apoyo.",
-      "Que el Santo de este día interceda especialmente por tus intenciones más íntimas y cuide tu salud y serenidad.",
-      "Los años pasan, pero la gratitud sincera y el respeto mutuo permanecen intactos como el primer día.",
-      "Hay deudas que nunca se pagan con dinero, sino con aprecio constante, lealtad y bendición diaria.",
-      "Gracias, JH, por tu hombría de bien, tu calidez humana y tu sabiduría pastoral a lo largo de estos 23 años.",
-      "Que la luz de la Palabra ilumine siempre tus homilías y reconforte tu corazón en los días de mayor fatiga.",
-      "Pocas personas saben estar presentes desde la distancia con tanta nobleza y desprendimiento como tú.",
-      "Esta herramienta no busca más que recordarte, día a día, que en algún lugar un viejo amigo agradece a Dios por haberte conocido."
-    ];
+    let actividadesArr = [];
 
-    // SANTORAL BASE
-    const santoralColeccion = [
-      { santo: "San Pedro Apóstol", cita: "«Tú eres el Cristo, el Hijo de Dios vivo.» (Mt 16, 16)", tipo: "Patrono Principal de la Catedral" },
-      { santo: "San Juan María Vianney (Santo Cura de Ars)", cita: "«El sacerdocio es el amor del corazón de Jesús.»", tipo: "Patrono de los Párrocos" },
-      { santo: "San Juan Pablo II", cita: "«¡No tengáis miedo! Abrid de par en par las puertas a Cristo.»", tipo: "Memoria Libre" },
-      { santo: "San Francisco de Asís", cita: "«Yo necesito pocas cosas y lo poco que necesito lo necesito poco.» (SFA)", tipo: "Memoria Obligatoria" },
-      { santo: "San Agustín de Hipona", cita: "«Nos hiciste, Señor, para ti, y nuestro corazón está inquieto hasta que descanse en ti.»", tipo: "Doctor de la Iglesia" },
-      { santo: "Santa Teresa de Jesús", cita: "«Nada te turbe, nada te espante; todo se pasa, Dios no se muda.»", tipo: "Doctora de la Iglesia" },
-      { santo: "San José, Esposo de la Virgen", cita: "«Hombre justo, custodio fiel del Redentor y modelo de silencio fecundo.»", tipo: "Solemnidad" },
-      { santo: "San Ignacio de Loyola", cita: "«En todo amar y servir a la mayor gloria de Dios.»", tipo: "Memoria" }
-    ];
-
-    // FUNCIÓN DE INICIALIZACIÓN INMEDIATA
-    function inicializarTodo() {
+    window.addEventListener('DOMContentLoaded', () => {
       iniciarReloj();
-      cargarFraseDelDia();
       cargarNotasGuardadas();
-      cargarSantoInicial();
+      cargarAgendaGuardada();
+      generarPromptIA();
       actualizarCanvas();
-    }
+    });
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', inicializarTodo);
-    } else {
-      inicializarTodo();
-    }
-
-    // RELOJ LITÚRGICO EN TIEMPO REAL
     function iniciarReloj() {
-      function tick() {
+      function actualizar() {
         const ahora = new Date();
-        const timeEl = document.getElementById('live-time');
-        const dateEl = document.getElementById('live-date');
-        const badgeEl = document.getElementById('liturgical-badge');
-        
-        if (timeEl) timeEl.innerText = ahora.toLocaleTimeString('es-CO');
-        if (dateEl) {
-          const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-          dateEl.innerText = ahora.toLocaleDateString('es-CO', opciones);
-        }
+        document.getElementById('live-time').innerText = ahora.toLocaleTimeString('es-CO');
+        const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('live-date').innerText = ahora.toLocaleDateString('es-CO', opciones);
 
-        if (badgeEl) {
-          const mes = ahora.getMonth();
-          if (mes === 11 || mes === 2) {
-            badgeEl.className = "mt-2 inline-block text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded bg-purple-950 text-purple-200 border border-purple-800";
-            badgeEl.innerText = "Tiempo Penitencial / Morado";
-          } else if (mes === 3 || mes === 4) {
-            badgeEl.className = "mt-2 inline-block text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-400";
-            badgeEl.innerText = "Tiempo de Fiesta / Blanco";
-          } else {
-            badgeEl.className = "mt-2 inline-block text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800";
-            badgeEl.innerText = "Tiempo Ordinario / Verde";
-          }
+        const mes = ahora.getMonth();
+        const badge = document.getElementById('liturgical-badge');
+        if (mes === 11 || mes === 2) {
+          badge.className = "text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-purple-100 text-purple-900 border border-purple-300";
+          badge.innerText = "Tiempo Penitencial / Morado";
+        } else if (mes === 3 || mes === 4 || mes === 11) {
+          badge.className = "text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-amber-100 text-amber-900 border border-amber-300";
+          badge.innerText = "Tiempo Festivo / Blanco";
+        } else {
+          badge.className = "text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 border border-emerald-300";
+          badge.innerText = "Tiempo Ordinario / Verde";
         }
       }
-      tick();
-      setInterval(tick, 1000);
+      actualizar();
+      setInterval(actualizar, 1000);
     }
 
-    // CAMBIO DE PESTAÑAS
     function cambiarPestana(pestana) {
-      const pestanas = ['santo', 'grafico', 'redactor', 'notas'];
-      pestanas.forEach(p => {
-        const sec = document.getElementById(`sec-${p}`);
-        const tab = document.getElementById(`tab-${p}`);
-        if (sec) sec.classList.add('hidden');
-        if (tab) tab.className = 'py-3.5 px-3 text-stone-500 hover:text-stone-900 transition-all flex-shrink-0';
+      ['agenda', 'evangelio', 'ia-imagenes', 'redactor', 'notas'].forEach(id => {
+        document.getElementById(`sec-${id}`).classList.add('hidden');
+        document.getElementById(`tab-${id}`).className = 'py-3.5 hover:text-slate-900 transition-all flex-shrink-0 text-slate-500';
+      });
+      document.getElementById(`sec-${pestana}`).classList.remove('hidden');
+      document.getElementById(`tab-${pestana}`).className = 'py-3.5 tab-active transition-all flex-shrink-0';
+      if (pestana === 'ia-imagenes') actualizarCanvas();
+    }
+
+    /* LÓGICA DE LA AGENDA Y REUNIONES DE HOY */
+    function cargarAgendaGuardada() {
+      const guardado = localStorage.getItem('agenda_jh_hoy');
+      if (guardado) {
+        actividadesArr = JSON.parse(guardado);
+      } else {
+        actividadesArr = [
+          { id: 1, hora: "08:00 AM", titulo: "Misa Matutina en la Catedral", hecha: true },
+          { id: 2, hora: "10:00 AM", titulo: "Atención e Intenciones en Despacho Parroquial (con la Secretaria)", hecha: false },
+          { id: 3, hora: "03:00 PM", titulo: "Reunión con el Consejo Parroquial", hecha: false },
+          { id: 4, hora: "06:00 PM", titulo: "Misa de Exequias / Pastoral Litúrgica", hecha: false }
+        ];
+        guardarAgendaEnStorage();
+      }
+      renderizarAgenda();
+    }
+
+    function guardarAgendaEnStorage() {
+      localStorage.setItem('agenda_jh_hoy', JSON.stringify(actividadesArr));
+    }
+
+    function renderizarAgenda() {
+      const cont = document.getElementById('lista-actividades');
+      if (actividadesArr.length === 0) {
+        cont.innerHTML = `<div class="p-4 text-center text-xs text-slate-400 bg-slate-50 rounded border border-dashed border-slate-200">No hay reuniones o actividades programadas para hoy. Use el formulario de arriba para añadir.</div>`;
+        return;
+      }
+
+      cont.innerHTML = actividadesArr.map((item, idx) => `
+        <div class="flex items-center justify-between p-3 rounded border ${item.hecha ? 'bg-slate-50 border-slate-200 text-slate-400' : 'bg-white border-slate-200 text-slate-800'} transition shadow-sm">
+          <div class="flex items-center gap-3">
+            <input type="checkbox" ${item.hecha ? 'checked' : ''} onchange="toggleActividad(${item.id})" class="w-4 h-4 rounded text-slate-900 focus:ring-0 cursor-pointer">
+            <div>
+              <span class="text-xs font-mono font-bold px-2 py-0.5 rounded ${item.hecha ? 'bg-slate-200 text-slate-500' : 'bg-slate-100 text-slate-700'}">${item.hora}</span>
+              <span class="text-xs font-medium ml-2 ${item.hecha ? 'line-through' : ''}">${item.titulo}</span>
+            </div>
+          </div>
+          <button type="button" onclick="borrarActividad(${item.id})" class="text-xs text-slate-400 hover:text-rose-600 px-2 py-1">
+            ✕
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function agregarActividad(e) {
+      e.preventDefault();
+      const hora = document.getElementById('act-hora').value;
+      const titulo = document.getElementById('act-titulo').value;
+      if (!hora || !titulo) return;
+
+      actividadesArr.push({
+        id: Date.now(),
+        hora: hora,
+        titulo: titulo,
+        hecha: false
       });
 
-      const secActiva = document.getElementById(`sec-${pestana}`);
-      const tabActivo = document.getElementById(`tab-${pestana}`);
-      if (secActiva) secActiva.classList.remove('hidden');
-      if (tabActivo) tabActivo.className = 'py-3.5 px-3 tab-active transition-all flex-shrink-0';
+      document.getElementById('act-hora').value = '';
+      document.getElementById('act-titulo').value = '';
 
-      if (pestana === 'grafico') {
-        setTimeout(actualizarCanvas, 50);
+      guardarAgendaEnStorage();
+      renderizarAgenda();
+    }
+
+    function toggleActividad(id) {
+      const it = actividadesArr.find(x => x.id === id);
+      if (it) {
+        it.hecha = !it.hecha;
+        guardarAgendaEnStorage();
+        renderizarAgenda();
       }
     }
 
-    // GESTIÓN DEL SANTO
-    function cargarSantoInicial() {
-      const guardado = localStorage.getItem('santo_personalizado_jh');
-      if (guardado) {
-        try {
-          const obj = JSON.parse(guardado);
-          document.getElementById('santo-nombre').innerText = obj.santo;
-          document.getElementById('santo-cita').innerText = obj.cita;
-          document.getElementById('santo-celebracion').innerText = obj.tipo || 'Celebración Litúrgica';
-          return;
-        } catch(e) {}
-      }
-      cargarSantoAleatorio();
+    function borrarActividad(id) {
+      actividadesArr = actividadesArr.filter(x => x.id !== id);
+      guardarAgendaEnStorage();
+      renderizarAgenda();
     }
 
-    function cargarSantoAleatorio() {
-      const azar = santoralColeccion[Math.floor(Math.random() * santoralColeccion.length)];
-      document.getElementById('santo-nombre').innerText = azar.santo;
-      document.getElementById('santo-cita').innerText = azar.cita;
-      document.getElementById('santo-celebracion').innerText = azar.tipo;
+    function limpiarAgendaCompletada() {
+      actividadesArr = actividadesArr.filter(x => !x.hecha);
+      guardarAgendaEnStorage();
+      renderizarAgenda();
     }
 
-    function personalizarSantoManual() {
-      const actual = document.getElementById('santo-nombre').innerText;
-      const nuevo = prompt("Escriba el nombre del Santo que encontró en Google:", actual);
-      if (nuevo && nuevo.trim()) {
-        const citaNueva = prompt("Escriba una breve cita bíblica o reseña:", document.getElementById('santo-cita').innerText);
-        document.getElementById('santo-nombre').innerText = nuevo.trim();
-        if (citaNueva && citaNueva.trim()) {
-          document.getElementById('santo-cita').innerText = `«${citaNueva.trim().replace(/^«|»$/g, '')}»`;
-        }
-        localStorage.setItem('santo_personalizado_jh', JSON.stringify({
-          santo: nuevo.trim(),
-          cita: document.getElementById('santo-cita').innerText,
-          tipo: 'Conmemoración del Día'
-        }));
-        sincronizarSantoDelDia();
+    function copiarEvangelio() {
+      const pasaje = document.getElementById('evangelio-pasaje').innerText;
+      const texto = document.getElementById('evangelio-texto').innerText;
+      navigator.clipboard.writeText(`${pasaje}\n${texto}`);
+      alert('Cita del Evangelio copiada al portapapeles ✓');
+    }
+
+    function enviarEvangelioAIaPrompt() {
+      document.getElementById('prompt-subject').value = "Escena bíblica representando " + document.getElementById('evangelio-pasaje').innerText;
+      cambiarPestana('ia-imagenes');
+      generarPromptIA();
+    }
+
+    function editarSantoManual() {
+      const nuevo = prompt('Escriba el nombre del Santo del Día:');
+      if (nuevo) {
+        document.getElementById('santo-nombre-dia').innerText = nuevo;
+        document.getElementById('prompt-subject').value = nuevo;
+        generarPromptIA();
       }
     }
 
-    function sincronizarSantoDelDia() {
-      const nom = document.getElementById('santo-nombre').innerText;
-      const cit = document.getElementById('santo-cita').innerText;
-      const tInput = document.getElementById('canvas-title-input');
-      const qInput = document.getElementById('canvas-quote-input');
-      if (tInput) tInput.value = nom;
-      if (qInput) qInput.value = cit;
-      actualizarCanvas();
+    function generarPromptIA() {
+      const sujeto = document.getElementById('prompt-subject').value || "Santo del día";
+      const estilo = document.getElementById('prompt-style').value;
+      const ratio = document.getElementById('prompt-ratio').value;
+
+      let estiloTexto = "classical sacred Catholic art style";
+      if (estilo === 'dore') estiloTexto = "high quality engraving style of Gustave Doré, detailed black and white etching";
+      else if (estilo === 'vitral') estiloTexto = "vibrant cathedral stained glass window, glowing golden sunlight";
+      else if (estilo === 'pintura') estiloTexto = "renaissance oil painting, dramatic chiaroscuro lighting";
+      else if (estilo === 'minimalista') estiloTexto = "clean minimal modern sacred line art illustration, white background";
+
+      const finalPrompt = `A sacred artwork of ${sujeto}, ${estiloTexto}, ${ratio} aspect ratio, dignified, clean composition, high definition.`;
+      document.getElementById('prompt-resultado').innerText = `"${finalPrompt}"`;
     }
 
-    // FRASES DE GRATITUD (MOTOR 365)
-    let indexFrase = 0;
-    function cargarFraseDelDia() {
-      const ahora = new Date();
-      const inicio = new Date(ahora.getFullYear(), 0, 0);
-      const diaDelAno = Math.floor((ahora - inicio) / (1000 * 60 * 60 * 24));
-      indexFrase = diaDelAno % frasesGratitud.length;
-      document.getElementById('frase-fraterna').innerText = `"${frasesGratitud[indexFrase]}"`;
+    function copiarPromptIA() {
+      const p = document.getElementById('prompt-resultado').innerText;
+      navigator.clipboard.writeText(p.replace(/"/g, ''));
+      const btn = document.getElementById('btn-copiar-prompt');
+      btn.innerText = '¡Copiado! ✓';
+      setTimeout(() => btn.innerText = 'Copiar Prompt 📋', 2000);
     }
 
-    function cambiarFraseGratitud() {
-      indexFrase = (indexFrase + 1) % frasesGratitud.length;
-      document.getElementById('frase-fraterna').innerText = `"${frasesGratitud[indexFrase]}"`;
-    }
-
-    // TALLER GRÁFICO (DIBUJO EN CANVAS)
     function actualizarCanvas() {
       const canvas = document.getElementById('sacroCanvas');
-      if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const sizeVal = document.getElementById('canvas-size').value;
-      const styleVal = document.getElementById('canvas-style').value;
-      const title = document.getElementById('canvas-title-input').value || "San Pedro Apóstol";
-      const subtitle = document.getElementById('canvas-date-input').value || "Catedral Metropolitana de Cali";
-      const quote = document.getElementById('canvas-quote-input').value || "";
-
-      if (sizeVal === '9_16') {
-        canvas.width = 1080; canvas.height = 1920;
-      } else if (sizeVal === '4_3') {
-        canvas.width = 1200; canvas.height = 900;
-      } else {
-        canvas.width = 1920; canvas.height = 1080;
-      }
-
       const W = canvas.width;
       const H = canvas.height;
 
-      // Paletas de color
-      if (styleVal === 'catedral') {
-        ctx.fillStyle = '#14161A';
-        ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = '#C5A059';
-        ctx.lineWidth = 12;
-        ctx.strokeRect(36, 36, W - 72, H - 72);
-        ctx.lineWidth = 3;
-        ctx.strokeRect(54, 54, W - 108, H - 108);
-        ctx.fillStyle = '#FAF7F2';
-      } else if (styleVal === 'dore') {
-        ctx.fillStyle = '#EFE9DE';
-        ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = '#2B2621';
-        ctx.lineWidth = 14;
-        ctx.strokeRect(36, 36, W - 72, H - 72);
-        ctx.lineWidth = 4;
-        ctx.strokeRect(54, 54, W - 108, H - 108);
-        ctx.fillStyle = '#2B2621';
-      } else {
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(0, 0, W, H);
-        ctx.strokeStyle = '#9E7A32';
-        ctx.lineWidth = 10;
-        ctx.strokeRect(36, 36, W - 72, H - 72);
-        ctx.fillStyle = '#1C1F26';
-      }
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, W, H);
 
-      // Cruz Sacra
+      ctx.strokeStyle = '#0F172A';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(20, 20, W - 40, H - 40);
+
       ctx.textAlign = 'center';
-      ctx.font = 'bold 54px serif';
-      ctx.fillText('☩', W / 2, H * 0.16);
+      ctx.fillStyle = '#0F172A';
+      ctx.font = 'bold 36px serif';
+      ctx.fillText('☩', W / 2, H * 0.15);
 
-      // Subtítulo
-      ctx.font = '600 28px sans-serif';
-      ctx.fillText(subtitle.toUpperCase(), W / 2, H * 0.22);
+      ctx.font = '600 18px sans-serif';
+      ctx.fillText('CATEDRAL DE SAN PEDRO APÓSTOL', W / 2, H * 0.22);
 
-      // Título del Santo
-      ctx.font = 'bold 72px serif';
-      ctx.fillText(title, W / 2, H * 0.35);
+      const santo = document.getElementById('santo-nombre-dia').innerText;
+      ctx.font = 'bold 28px serif';
+      ctx.fillText(santo, W / 2, H * 0.35);
 
-      // Línea divisoria
-      ctx.beginPath();
-      ctx.moveTo(W * 0.3, H * 0.40);
-      ctx.lineTo(W * 0.7, H * 0.40);
-      ctx.lineWidth = 3;
-      ctx.strokeStyle = styleVal === 'catedral' ? '#C5A059' : '#8A7356';
-      ctx.stroke();
+      const cita = document.getElementById('evangelio-texto').innerText;
+      ctx.font = 'italic 20px serif';
+      ctx.fillStyle = '#334155';
 
-      // Cita bíblica
-      ctx.font = 'italic 44px serif';
-      const lineas = ajustarTexto(ctx, quote, W * 0.75);
-      let posY = H * 0.52;
-      lineas.forEach(l => {
-        ctx.fillText(l, W / 2, posY);
-        posY += 64;
-      });
+      const palabras = cita.split(' ');
+      let linea = '';
+      let y = H * 0.50;
 
-      // Pie del estado
-      ctx.font = '300 24px sans-serif';
-      ctx.fillText("CATEDRAL DE SAN PEDRO APÓSTOL · CALI", W / 2, H * 0.90);
-    }
-
-    function ajustarTexto(ctx, texto, anchoMax) {
-      const palabras = texto.split(' ');
-      const lineas = [];
-      let lineaActual = palabras[0] || '';
-
-      for (let i = 1; i < palabras.length; i++) {
-        const prueba = lineaActual + ' ' + palabras[i];
-        if (ctx.measureText(prueba).width < anchoMax) {
-          lineaActual = prueba;
+      for (let i = 0; i < palabras.length; i++) {
+        let test = linea + palabras[i] + ' ';
+        if (ctx.measureText(test).width > W * 0.75) {
+          ctx.fillText(linea, W / 2, y);
+          linea = palabras[i] + ' ';
+          y += 30;
         } else {
-          lineas.push(lineaActual);
-          lineaActual = palabras[i];
+          linea = test;
         }
       }
-      lineas.push(lineaActual);
-      return lineas;
+      ctx.fillText(linea, W / 2, y);
+
+      ctx.font = '14px sans-serif';
+      ctx.fillStyle = '#64748B';
+      ctx.fillText('CALI · COLOMBIA', W / 2, H * 0.90);
     }
 
     function descargarImagen() {
       const canvas = document.getElementById('sacroCanvas');
-      const enlace = document.createElement('a');
-      enlace.download = 'estado-liturgico-jh.png';
-      enlace.href = canvas.toDataURL('image/png');
-      enlace.click();
+      const a = document.createElement('a');
+      a.download = 'estado-liturgico-jh.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
     }
 
-    // CONSEJERO PASTORAL
     const plantillas = {
-      pastoral: `Estimada comunidad de la Catedral de San Pedro Apóstol,\n\nCon un saludo fraterno en Cristo Jesús, me dirijo a ustedes para recordarles la importancia de perseverar en la oración y en la caridad mutua en este tiempo de gracia...\n\nOremos juntos por nuestras familias y enfermos.\n\nPbro. Jaime Humberto Ramos Escobar\nPárroco`,
-      solemne: `Al Señor Arzobispo y Miembros del Honorable Cabildo Catedralicio,\n\nPor medio de la presente, me permito comunicarles con atento y respetuoso saludo filial los pormenores concernientes a las celebraciones litúrgicas de nuestra Catedral...\n\nAgradeciendo de antemano su bendición pastoral,\n\nEn Cristo Sumo y Eterno Sacerdote,\nPbro. Jaime Humberto Ramos Escobar`,
-      homilia: `ESQUEMA DE HOMILÍA DOMINICAL\n\n1. VER (Realidad cotidiana):\n- ¿Dónde nos encontramos hoy con la sed de Dios?\n\n2. JUZGAR (Luz del Evangelio):\n- La respuesta de Jesús: confianza frente al desaliento.\n\n3. ACTUAR (Compromiso pastoral):\n- Propósito concreto de caridad para la comunidad en esta semana.`,
-      fraterno: `Apreciado hermano y amigo:\n\nEn este día especial quiero hacerte llegar mi más sincero saludo, acompañado de mi oración y bendición sacerdotal. Que el Señor siga colmando tu vida de salud, trabajo fecundo y la paz serena que solo proviene de Él.\n\nUn fuerte abrazo con aprecio sincero,\nPbro. Jaime Humberto Ramos Escobar`
+      institucional: `COMUNICADO OFICIAL\nCATEDRAL METROPOLITANA DE SAN PEDRO APÓSTOL\n\nEstimada comunidad parroquial y fieles de la Archidiócesis:\n\nNos dirigimos a ustedes para informarles sobre las próximas celebraciones comunitarias...\n\nEn Cristo,\nPbro. Jaime Humberto Ramos Escobar\nPárroco`,
+      curia: `Al Excelentísimo Señor Arzobispo y Curia Metropolitana:\n\nCon atento y respetuoso saludo filial, me permito presentar el informe correspondiente a la actividad pastoral de la Catedral...\n\nAgradeciendo su bendición pastoral,\n\nAtentamente en Cristo,\nPbro. Jaime Humberto Ramos Escobar`,
+      cercano: `Apreciado amigo / estimado hermano:\n\nRecibe mi saludo fraterno y mi oración sacerdotal en este día. Que el Señor bendiga tu hogar y te conceda siempre su paz serena...\n\nUn abrazo en Cristo,\nPbro. Jaime Humberto Ramos Escobar`,
+      reunion: `ORDEN DEL DÍA — REUNIÓN DE PASTORAL\n\n1. Oración inicial e iluminación del Evangelio.\n2. Verificación de compromisos anteriores.\n3. Organización de celebraciones litúrgicas.\n4. Propósitos de caridad y asistencia comunitaria.\n5. Asuntos varios y bendición final.`
     };
 
-    function seleccionarPlantilla(tipo) {
+    function cargarPlantilla(tipo) {
       document.getElementById('texto-pastoral').value = plantillas[tipo];
     }
 
     function copiarTextoRedactado() {
-      const area = document.getElementById('texto-pastoral');
-      navigator.clipboard.writeText(area.value).then(() => {
-        const btn = document.getElementById('btn-copiar');
-        btn.innerText = '¡Copiado! ✓';
-        setTimeout(() => btn.innerText = 'Copiar Texto 📋', 2000);
-      });
+      const t = document.getElementById('texto-pastoral').value;
+      navigator.clipboard.writeText(t);
+      const btn = document.getElementById('btn-copiar-redaccion');
+      btn.innerText = '¡Copiado! ✓';
+      setTimeout(() => btn.innerText = 'Copiar Documento 📋', 2000);
     }
 
-    // CUADERNO DE NOTAS
     function guardarNotas() {
       const notas = document.getElementById('cuaderno-notas').value;
-      localStorage.setItem('notas_jh_catedral', notas);
+      localStorage.setItem('notas_jh_dashboard', notas);
       const st = document.getElementById('status-guardado');
       st.innerText = 'Guardando...';
       setTimeout(() => st.innerText = 'Guardado ✓', 500);
     }
 
     function cargarNotasGuardadas() {
-      const guardado = localStorage.getItem('notas_jh_catedral');
-      if (guardado) {
-        document.getElementById('cuaderno-notas').value = guardado;
-      }
+      const n = localStorage.getItem('notas_jh_dashboard');
+      if (n) document.getElementById('cuaderno-notas').value = n;
     }
 
     function limpiarNotas() {
-      if (confirm('¿Desea borrar las notas actuales del cuaderno?')) {
+      if (confirm('¿Desea borrar las notas del borrador?')) {
         document.getElementById('cuaderno-notas').value = '';
-        localStorage.removeItem('notas_jh_catedral');
+        localStorage.removeItem('notas_jh_dashboard');
       }
     }
 
     function descargarNotasTxt() {
-      const contenido = document.getElementById('cuaderno-notas').value;
-      const blob = new Blob([contenido], { type: 'text/plain;charset=utf-8' });
+      const c = document.getElementById('cuaderno-notas').value;
+      const blob = new Blob([c], { type: 'text/plain;charset=utf-8' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = 'notas-homilias-jh.txt';
+      a.download = 'notas-parroquia-jh.txt';
       a.click();
     }
   </script>
