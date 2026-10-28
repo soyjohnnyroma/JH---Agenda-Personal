@@ -1,3 +1,8 @@
+# Código Completo: JH — Agenda Personal & Dashboard (Versión Limpia)
+
+Copia todo el bloque de código a continuación y pégalo directamente en tu archivo `index.html` en GitHub:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -301,4 +306,276 @@
       <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
         <div class="flex justify-between items-center pb-3 border-b border-slate-200">
           <div>
-     
+            <h2 class="text-lg font-bold text-slate-900">Cuaderno de Reuniones & Intenciones</h2>
+            <p class="text-xs text-slate-500">Guardado automático en la memoria interna de este dispositivo.</p>
+          </div>
+          <span id="status-guardado" class="text-xs text-emerald-600 font-semibold">Guardado ✓</span>
+        </div>
+        <textarea id="cuaderno-notas" oninput="guardarNotas()" rows="14" placeholder="Anote aquí temas para el consejo parroquial, intenciones especiales de misa o compromisos de la Catedral..." class="w-full mt-4 p-4 border border-slate-200 rounded font-serif text-slate-800 text-sm leads-relaxed bg-slate-50/50 foco:esquema-ninguno foco:anillo-1 foco:anillo-pizarra-400"></textarea>
+        <div class="mt-4 flex justify-between items-center text-xs">
+          <button type="button" onclick="limpiarNotas()" class="text-rose-600 hover:underline">Borrar borrador</button>
+          <button type="button" onclick="descargarNotasTxt()" class="px-4 py-2 bg-slate-800 text-white rounded font-medium hover:bg-black transition shadow-sm">
+            Guardar como Archivo (.txt) ↓
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-200 py-4 px-4 text-center text-xs text-slate-400">
+    JH — Catedral Metropolitana de San Pedro Apóstol · Cali
+  </footer>
+
+  <script>
+    sea ​​actividades = [
+      { id: 1, hora: '07:00 AM', texto: 'Santa Misa matutina en la Catedral', hecha: true },
+      { id: 2, hora: '09:00 AM', texto: 'Atención de despacho y confesiones', hecha: false },
+      { id: 3, hora: '03:00 PM', texto: 'Reunión de coordinación pastoral', hecha: false }
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      iniciarReloj();
+      cargarNotasGuardadas();
+      cargarActividadesGuardadas();
+      generarPromptIA();
+      actualizarCanvas();
+    });
+
+    función iniciarReloj() {
+      función actualizar() {
+        const ahora = new Date();
+        document.getElementById('live-time').innerText = ahora.toLocaleTimeString('es-CO');
+        const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('live-date').innerText = ahora.toLocaleDateString('es-CO', opciones);
+
+        const mes = ahora.getMonth();
+        const badge = document.getElementById('liturgical-badge');
+        si (mes === 11 || mes === 2) {
+          badge.className = "text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-purple-100 text-purple-900 border border-purple-300";
+          badge.innerText = "Tiempo Penitencial / Morado";
+        } si no (mes === 3 || mes === 4 || mes === 11) {
+          badge.className = "text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-amber-100 text-amber-900 border border-amber-300";
+          badge.innerText = "Tiempo Festivo / Blanco";
+        } demás {
+          badge.className = "text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 border border-emerald-300";
+          badge.innerText = "Tiempo Ordinario / Verde";
+        }
+      }
+      actualizar();
+      setInterval(actualizar, 1000);
+    }
+
+    function cambiarPestana(pestana) {
+      ['evangelio', 'agenda', 'ia-imagenes', 'redactor', 'notas'].forEach(id => {
+        document.getElementById(`sec-${id}`).classList.add('hidden');
+        document.getElementById(`tab-${id}`).className = 'py-3.5 hover:text-slate-900 transition-all flex-shrink-0 text-slate-500';
+      });
+      document.getElementById(`sec-${pestana}`).classList.remove('hidden');
+      document.getElementById(`tab-${pestana}`).className = 'py-3.5 tab-active transition-all flex-shrink-0';
+      if (pestana === 'ia-imagenes') actualizarCanvas();
+    }
+
+    función copiarEvangelio() {
+      const pasaje = document.getElementById('evangelio-pasaje').innerText;
+      const texto = document.getElementById('evangelio-texto').innerText;
+      navigator.clipboard.writeText(`${pasaje}\n${texto}`);
+      alert('Cita del Evangelio copiada al portapapeles ✓');
+    }
+
+    función enviarEvangelioAIaPrompt() {
+      document.getElementById('prompt-subject').value = "Escena bíblica representando " + document.getElementById('evangelio-pasaje').innerText;
+      cambiarPestana('ia-imagenes');
+      generarPromptIA();
+    }
+
+    function editarSantoManual() {
+      const nuevo = Prompt('Escribe el nombre del Santo del Día:');
+      si (nuevo) {
+        document.getElementById('santo-nombre-dia').innerText = nuevo;
+        document.getElementById('prompt-subject').value = nuevo;
+        generarPromptIA();
+      }
+    }
+
+    function cargarActividadesGuardadas() {
+      const guardadas = localStorage.getItem('actividades_jh');
+      if (guardadas) actividades = JSON.parse(guardadas);
+      renderActividades();
+    }
+
+    function guardarActividades() {
+      localStorage.setItem('actividades_jh', JSON.stringify(actividades));
+    }
+
+    función renderActividades() {
+      const contenedor = document.getElementById('lista-actividades');
+      contenedor.innerHTML = '';
+      actividades.forEach(act => {
+        const div = document.createElement('div');
+        div.className = `flex items-center justify-between p-3 rounded-lg border text-xs transition ${act.hecha ? 'bg-slate-50 border-slate-200 text-slate-400 line-through' : 'bg-white border-slate-200 text-slate-800'}`;
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <input type="checkbox" ${act.hecha ? 'checked' : ''} onchange="toggleActividad(${act.id})" class="rounded border-slate-300 text-slate-900 focus:ring-0">
+            <span class="font-mono font-bold text-slate-600">${act.hora}</span>
+            <span>${act.texto}</span>
+          </div>
+          <button type="button" onclick="eliminarActividad(${act.id})" class="text-rose-500 hover:text-rose-700 font-bold px-2">✕</button>
+        `;
+        contenedor.appendChild(div);
+      });
+    }
+
+    función alternarActividad(id) {
+      actividades = actividades.map(a => a.id === id ? { ...a, hecha: !a.hecha } : a);
+      guardarActividades();
+      renderActividades();
+    }
+
+    función agregarActividad() {
+      const texto = Prompt('Descripción de la actividad o reunión:');
+      si (!texto) regresar;
+      const hora = Prompt('Hora (ejemplo: 11:00 AM):') || 'Todo el día';
+      actividades.push({ id: Date.now(), hora, texto, hecha: false });
+      guardarActividades();
+      renderActividades();
+    }
+
+    función eliminarActividad(id) {
+      actividades = actividades.filter(a => a.id !== id);
+      guardarActividades();
+      renderActividades();
+    }
+
+    función generarPromptIA() {
+      const sujeto = document.getElementById('prompt-subject').value || "Santo del día";
+      const estilo = document.getElementById('prompt-style').value;
+      const ratio = document.getElementById('prompt-ratio').value;
+
+      let estiloTexto = "estilo de arte católico sacro clásico";
+      if (estilo === 'dore') estiloTexto = "estilo de grabado de alta calidad de Gustave Doré, grabado detallado en blanco y negro";
+      else if (estilo === 'vitral') estiloTexto = "vibrante vidriera de catedral, brillante luz dorada del sol";
+      else if (estilo === 'pintura') estiloTexto = "pintura al óleo renacentista, iluminación dramática de claroscuro";
+      else if (estilo === 'minimalista') estiloTexto = "clean minimal modern sacred line art illustration, white background";
+
+      const finalPrompt = `Una obra de arte sagrada de ${sujeto}, ${estiloTexto}, ${ratio} relación de aspecto, digna, composición limpia, alta definición.`;
+      document.getElementById('prompt-resultado').innerText = `"${finalPrompt}"`;
+    }
+
+    función copiarPromptIA() {
+      const p = document.getElementById('prompt-resultado').innerText;
+      navegador.clipboard.writeText(p.replace(/"/g, ''));
+      const btn = document.getElementById('btn-copiar-prompt');
+      btn.innerText = '¡Copiado! ✓';
+      setTimeout(() => btn.innerText = 'Copiar Prompt 📋', 2000);
+    }
+
+    función actualizarCanvas() {
+      const canvas = document.getElementById('sacroCanvas');
+      const ctx = canvas.getContext('2d');
+      const W = ancho del lienzo;
+      const H = canvas.height;
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = '#0F172A';
+      ctx.lineWidth = 6;
+      ctx.strokeRect(20, 20, W - 40, H - 40);
+
+      ctx.textAlign = 'centro';
+      ctx.fillStyle = '#0F172A';
+      ctx.font = 'bold 36px serif';
+      ctx.fillText('☩', W / 2, H * 0,15);
+
+      ctx.font = '600 18px sans-serif';
+      ctx.fillText('CATEDRAL DE SAN PEDRO APÓSTOL', W/2, H*0.22);
+
+      const santo = document.getElementById('santo-nombre-dia').innerText;
+      ctx.font = 'bold 28px serif';
+      ctx.fillText(santo, W/2, H*0,35);
+
+      const cita = document.getElementById('evangelio-texto').innerText;
+      ctx.font = 'italic 20px serif';
+      ctx.fillStyle = '#334155';
+
+      const palabras = cita.split(' ');
+      sea ​​línea = '';
+      sea ​​y = H * 0.50;
+
+      para (let i = 0; i < palabras.length; i++) {
+        let prueba = linea + palabras[i] + ' ';
+        Si (ctx.measureText(test).width > W * 0.75) {
+          ctx.fillText(linea, W/2, y);
+          línea = palabras[i] + ' ';
+          y += 30;
+        } demás {
+          línea = prueba;
+        }
+      }
+      ctx.fillText(linea, W/2, y);
+
+      ctx.font = '14px sans-serif';
+      ctx.fillStyle = '#64748B';
+      ctx.fillText('CALI · COLOMBIA', W/2, H*0.90);
+    }
+
+    función descargarImagen() {
+      const canvas = document.getElementById('sacroCanvas');
+      const a = document.createElement('a');
+      a.download = 'estado-liturgico-jh.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }
+
+    const plantillas = {
+      institucional: `COMUNICADO OFICIAL\nCATEDRAL METROPOLITANA DE SAN PEDRO APÓSTOL\n\nEstimada comunidad parroquial y fieles de la Archidiócesis:\n\nNos dirigimos a ustedes para informarles sobre las próximas celebraciones comunitarias...\n\nEn Cristo,\nPbro. Jaime Humberto Ramos Escobar\nPárroco`,
+      curia: `Al Excelentísimo Señor Arzobispo y Curia Metropolitana:\n\nCon atento y respetuoso saludo filial, me permito presentar el informe correspondiente a la actividad pastoral de la Catedral...\n\nAgradeciendo su bendición pastoral,\n\nAtentamente en Cristo,\nPbro. Jaime Humberto Ramos Escobar`,
+      cercano: `Apreciado amigo / estimado hermano:\n\nRecibe mi saludo fraterno y mi oración sacerdotal en este día. Que el Señor bendiga tu hogar y te conceda siempre su paz serena...\n\nUn abrazo en Cristo,\nPbro. Jaime Humberto Ramos Escobar`,
+      reunión: `ORDEN DEL DÍA — REUNIÓN DE PASTORAL\n\n1. Oración inicial e iluminación del Evangelio.\n2. Verificación de compromisos anteriores.\n3. Organización de celebraciones litúrgicas.\n4. Propósitos de caridad y asistencia comunitaria.\n5. Asuntos varios y bendición final.`
+    };
+
+    function cargarPlantilla(tipo) {
+      document.getElementById('texto-pastoral').value = plantillas[tipo];
+    }
+
+    function copiarTextoRedactado() {
+      const t = document.getElementById('texto-pastoral').value;
+      navegador.portapapeles.escribirTexto(t);
+      const btn = document.getElementById('btn-copiar-redaccion');
+      btn.innerText = '¡Copiado! ✓';
+      setTimeout(() => btn.innerText = 'Copiar Documento 📋', 2000);
+    }
+
+    función guardarNotas() {
+      const notas = document.getElementById('cuaderno-notas').value;
+      localStorage.setItem('notas_jh_dashboard', notas);
+      const st = document.getElementById('status-guardado');
+      st.innerText = 'Guardando...';
+      setTimeout(() => st.innerText = 'Guardado ✓', 500);
+    }
+
+    function cargarNotasGuardadas() {
+      const n = localStorage.getItem('notas_jh_dashboard');
+      if (n) document.getElementById('cuaderno-notas').value = n;
+    }
+
+    función limpiarNotas() {
+      if (confirm('¿Desea borrar las notas del borrador?')) {
+        document.getElementById('cuaderno-notas').value = '';
+        localStorage.removeItem('notas_jh_dashboard');
+      }
+    }
+
+    función descargarNotasTxt() {
+      const c = document.getElementById('cuaderno-notas').value;
+      const blob = new Blob([c], { type: 'text/plain;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'notas-parroquia-jh.txt';
+      a.click();
+    }
+  </script>
+</body>
+</html>
+```
